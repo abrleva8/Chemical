@@ -5,6 +5,7 @@ using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows.Media.Media3D;
 
 namespace Don_tKnowHowToNameThis {
     /// <summary>
@@ -18,7 +19,11 @@ namespace Don_tKnowHowToNameThis {
         private List<double>? _q;
         public MainWindow() {
             InitializeComponent();
-            Combo.SelectedIndex = 0;
+            InitMaterialComboBox();
+        }
+
+        private void InitMaterialComboBox() {
+            DataBaseWorker.GetMaterials().ForEach(material => MaterialComboBox.Items.Add(material));
         }
 
         private Calc _calc = new();

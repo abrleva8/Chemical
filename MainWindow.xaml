@@ -30,8 +30,8 @@
         </Menu>
         <Label Grid.Column="4" Grid.Row="0" Content="Материал:" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="10,4,0,0" FontWeight="Bold" />
         <Label Grid.Column="0" Grid.Row="1" Content="Входные параметры:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="6,0,0,0" Grid.ColumnSpan="2" FontWeight="Bold" />
-        <ComboBox x:Name="Combo" Grid.Column="4" Height="26" HorizontalAlignment="Left" Margin="94,6,0,0" VerticalAlignment="Top" Width="120" Grid.RowSpan="2">
-            <TextBlock>полистирол</TextBlock>
+        <ComboBox x:Name="MaterialComboBox" Grid.Column="4" Height="26" HorizontalAlignment="Left" Margin="94,6,0,0" VerticalAlignment="Top" Width="120"
+                  Grid.Row="0" Grid.RowSpan="2">
         </ComboBox>
             <GroupBox Header="Геометрические параметры:" Grid.Row="2" Grid.Column="0" Margin="2,2,2,2" Grid.ColumnSpan="2" BorderThickness="0" BorderBrush="#ffffff">
             <Grid>
