@@ -12,7 +12,7 @@ namespace Don_tKnowHowToNameThis {
         //public SeriesCollection SeriesCollection { get; set; }
         public String[] Labels { get; set; }
 
-        public WindowPlot(List<double> zCoord, List<double> temperature, List<double> viscocity) {
+        public WindowPlot(List<double>? zCoord, List<double>? temperature, List<double>? viscocity) {
             InitializeComponent();
 
 

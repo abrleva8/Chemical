@@ -8,18 +8,20 @@ using System.Windows;
 namespace Don_tKnowHowToNameThis {
     internal class ExcelWorker {
         private string _path { get; set; }
-        List<double> zCoords;
-        List<double> temperature;
-        List<double> viscosity;
-        List<double> q;
-        Calc _calc = new Calc();
+        List<double>? zCoords;
+        List<double>? temperature;
+        List<double>? viscosity;
+        List<double>? q;
+        Calc _calc = new();
 
+/*
         public ExcelWorker(Calc calc, string fileName) {
             _path = fileName;
             _calc = calc;
         }
+*/
 
-        public ExcelWorker(List<double> zCoord, List<double> temperature, List<double> viscosity, List<double> q, string fileName) {
+        public ExcelWorker(List<double>? zCoord, List<double>? temperature, List<double>? viscosity, List<double>? q, string fileName) {
             zCoords = zCoord;
             this.temperature = temperature;
             this.viscosity = viscosity;
@@ -49,40 +51,40 @@ namespace Don_tKnowHowToNameThis {
 
                 int r = rowAndColumn;
                 int c = rowAndColumn + 5;
-                Dictionary<string, object> inputDatas = new Dictionary<string, object>()
+                Dictionary<string, object> inputDatas = new()
                 {
                     { "Входные данные",                                                     "" },
                     { "Тип материала",                                                      "" },
                     { "", ""},
                     { "Геометрические параметры канала:",                                   "" },
-                    { "Ширина, м",                                                          _calc._W },
-                    { "Глубина, м",                                                         _calc._H },
-                    { "Длина, м",                                                           _calc._L },
+                    { "Ширина, м",                                                          _calc.W },
+                    { "Глубина, м",                                                         _calc.H },
+                    { "Длина, м",                                                           _calc.L },
                     { " ", ""},
                     { "Параметры свойств материала:",                                       ""},
-                    { "Плотность, кг/м^3",                                                  _calc._R },
-                    { "Удельная теплоёмкость, Дж/(кг*°С)",                                  _calc._c },
-                    { "Температура плавления, °С",                                          _calc._T0 },
+                    { "Плотность, кг/м^3",                                                  Calc.R },
+                    { "Удельная теплоёмкость, Дж/(кг*°С)",                                  _calc.C },
+                    { "Температура плавления, °С",                                          _calc.T0 },
                     { "  ", ""},
                     { "Режимные параметры процесса:",                                       "" },
-                    { "Скорость крышки, м/с",                                               _calc._Vu },
-                    { "Температура крышки, °С",                                             _calc._Tu },
+                    { "Скорость крышки, м/с",                                               _calc.Vu },
+                    { "Температура крышки, °С",                                             _calc.Tu },
                     { "   ", ""},
                     { "Параметры метода решения уравнений модели:",                         "" },
-                    { "Шаг расчета по длине канала, м",                                     _calc._step },
+                    { "Шаг расчета по длине канала, м",                                     _calc.Step },
                     { "    ", ""},
                     { "Эмпирические коэффициенты математической модели:",                   "" },
-                    { "Коэффициент консистенции при температуре приведения, Па*с^n",        _calc._mu0 },
-                    { "Энергия активации вязкого течения материала, Дж/моль",                  _calc._Ea },
-                    { "Температура приведения, °С",                                         _calc._Tr },
-                    { "Индекс течения",                                                     _calc._n },
-                    { "Коэффициент теплоотдачи от крышки канала к материалу, Вт /(м^2*°С)", _calc._alphaU },
+                    { "Коэффициент консистенции при температуре приведения, Па*с^n",        _calc.Mu0 },
+                    { "Энергия активации вязкого течения материала, Дж/моль",                  _calc.Ea },
+                    { "Температура приведения, °С",                                         _calc.Tr },
+                    { "Индекс течения",                                                     _calc.N },
+                    { "Коэффициент теплоотдачи от крышки канала к материалу, Вт /(м^2*°С)", _calc.AlphaU },
                     { "     ", ""},
                     { "      ", ""},
                     { "Критериальные показатели процесса:",                                 "" },
                     { "Производительность, кг/ч",                                           _calc.Q },
-                    { "Температура продукта, °С",                                           temperature[temperature.Count-1] },
-                    { "Вязкость продукта, Па*с",                                            viscosity[viscosity.Count -1] },
+                    { "Температура продукта, °С",                                           temperature[^1] },
+                    { "Вязкость продукта, Па*с",                                            viscosity[^1] },
                 };
 
                 foreach (var str in inputDatas) {

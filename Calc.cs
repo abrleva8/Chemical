@@ -2,111 +2,104 @@
 
 namespace Don_tKnowHowToNameThis {
     public class Calc {
-        public readonly double _R = 8.314; //ok
-        public readonly double _W = 0.20; //ok 
-        public readonly double _H = 0.009; //ok
-        public readonly double _L = 4.5; //ok
+        public const double R = 8.314; //ok
+        public readonly double W = 0.20; //ok 
+        public readonly double H = 0.009; //ok
+        public readonly double L = 4.5; //ok
         // TODO:make the step variable
-        public readonly double _step = 0.1;
-        public readonly double _p = 1060; //ok
-        public readonly double _c = 1200; //ok
-        public readonly double _T0 = 175; //ok
-        public readonly double _Vu = 1.2; //ok
-        public readonly double _Tu = 220; //ok
-        public readonly double _mu0 = 9000; //ok
-        public readonly double _Ea = 92000; //ok
-        public readonly double _Tr = 210; //ok
-        public readonly double _n = 0.3; //ok
-        public readonly double _alphaU = 450; //ok
+        public readonly double Step = 0.1;
+        public readonly double P = 1060; //ok
+        public readonly double C = 1200; //ok
+        public readonly double T0 = 175; //ok
+        public readonly double Vu = 1.2; //ok
+        public readonly double Tu = 220; //ok
+        public readonly double Mu0 = 9000; //ok
+        public readonly double Ea = 92000; //ok
+        public readonly double Tr = 210; //ok
+        public readonly double N = 0.3; //ok
+        public readonly double AlphaU = 450; //ok
 
-        public readonly double _W_Min = 0.0001;
-        public readonly double _H_Min = 0.0001;
-        public readonly double _L_Min = 0.01;
-        public readonly double _step_Min = 0.05;
-        public readonly double _p_Min = 100;
-        public readonly double _c_Min = 100;
-        public readonly double _T0_Min = 30;
-        public readonly double _Vu_Min = 0.01;
-        public readonly double _Tu_Min = 30;
-        public readonly double _mu0_Min = 100;
-        public readonly double _Ea_Min = 100;
-        public readonly double _Tr_Min = 30;
-        public readonly double _n_Min = 0.01;
-        public readonly double _alphaU_Min = 10;
+        public readonly double WMin = 0.0001;
+        public readonly double HMin = 0.0001;
+        public readonly double LMin = 0.01;
+        public readonly double StepMin = 0.05;
+        public readonly double PMin = 100;
+        public readonly double CMin = 100;
+        public readonly double T0Min = 30;
+        public readonly double VuMin = 0.01;
+        public readonly double TuMin = 30;
+        public readonly double Mu0Min = 100;
+        public readonly double EaMin = 100;
+        public readonly double TrMin = 30;
+        public readonly double NMin = 0.01;
+        public readonly double AlphaUMin = 10;
 
-        public readonly double _W_Max = 3;
-        public readonly double _H_Max = 3;
-        public readonly double _L_Max = 10;
-        public readonly double _step_Max = 2;
-        public readonly double _p_Max = 20000;
-        public readonly double _c_Max = 10000;
-        public readonly double _T0_Max = 1000;
-        public readonly double _Vu_Max = 10;
-        public readonly double _Tu_Max = 1000;
-        public readonly double _mu0_Max = 50000;
-        public readonly double _Ea_Max = 1000000;
-        public readonly double _Tr_Max = 1000;
-        public readonly double _n_Max = 1;
-        public readonly double _alphaU_Max = 5000;
+        public readonly double WMax = 3;
+        public readonly double HMax = 3;
+        public readonly double LMax = 10;
+        public readonly double StepMax = 2;
+        public readonly double PMax = 20000;
+        public readonly double CMax = 10000;
+        public readonly double T0Max = 1000;
+        public readonly double VuMax = 10;
+        public readonly double TuMax = 1000;
+        public readonly double Mu0Max = 50000;
+        public readonly double EaMax = 1000000;
+        public readonly double TrMax = 1000;
+        public readonly double NMax = 1;
+        public readonly double AlphaUMax = 5000;
 
 
-        private double gammaPoit = 0;
-        private double qGamma = 0;
-        private double beta = 0;
-        private double qAlpha = 0;
-        private double F = 0;
-        private double Qch = 0;
-        public double z = 0;
-        public double Q = 0;
+        private double _gammaPoint;
+        private double _qGamma;
+        private double _beta;
+        private double _qAlpha;
+        private double _f;
+        private double _qch;
+        public double Z = 0;
+        public double Q;
 
-        public Calc(double W, double H, double L, double step, double p, double c, double T0, double Vu, double Tu, double mu0, double Ea, double Tr, double n, double alphaU) {
-            _W = W;
-            _H = H;
-            _L = L;
-            _step = step;
-            _p = p;
-            _c = c;
-            _T0 = T0;
-            _Vu = Vu;
-            _Tu = Tu;
-            _mu0 = mu0;
-            _Ea = Ea;
-            _Tr = Tr;
-            _n = n;
-            _alphaU = alphaU;
-        }
-
-        public Calc(double W, double H, double L, double step) {
-            _W = W;
-            _H = H;
-            _L = L;
-            _step = step;
+        public Calc(double w, double h, double l, double step, double p, double c, double t0, double vu, double tu, double mu0, double ea, double tr, double n, double alphaU) {
+            W = w;
+            H = h;
+            L = l;
+            Step = step;
+            P = p;
+            C = c;
+            T0 = t0;
+            Vu = vu;
+            Tu = tu;
+            Mu0 = mu0;
+            Ea = ea;
+            Tr = tr;
+            N = n;
+            AlphaU = alphaU;
         }
 
         public Calc() { }
 
         public void MaterialShearStrainRate() {
-            gammaPoit = _Vu / _H;
+            _gammaPoint = Vu / H;
         }
         public void SpecificHeatFluxes() {
-            qGamma = _H * _W * _mu0 * Math.Pow(gammaPoit, _n + 1);
-            beta = _Ea / (_R * (_T0 + 20 + 273) * (_Tr + 273));
-            qAlpha = _W * _alphaU * (Math.Pow(beta, -1) - _Tu + _Tr);
+            _qGamma = H * W * Mu0 * Math.Pow(_gammaPoint, N + 1);
+            _beta = Ea / (R * (T0 + 20 + 273) * (Tr + 273));
+            _qAlpha = W * AlphaU * (Math.Pow(_beta, -1) - Tu + Tr);
         }
         public void VolumeFlowRateOfMaterialFlowInTheChannel() {
-            F = 0.125 * Math.Pow(_H / _W, 2) - 0.625 * (_H / _W) + 1;
-            Qch = _H * _W * _Vu * F / 2;
+            _f = 0.125 * Math.Pow(H / W, 2) - 0.625 * (H / W) + 1;
+            _qch = H * W * Vu * _f / 2;
         }
 
         public double Temperature(double z) {
-            return _Tr + (1 / beta) * Math.Log((beta * qGamma + _W * _alphaU) / (beta * qAlpha) * (1 - Math.Exp((-beta * qAlpha * z) / (_p * _c * Qch)))
-                                                + Math.Exp(beta * (_T0 - _Tr - (qAlpha * z) / (_p * _c * Qch))));
+            return Tr + (1 / _beta) * Math.Log((_beta * _qGamma + W * AlphaU) / (_beta * _qAlpha) * (1 - Math.Exp((-_beta * _qAlpha * z) / (P * C * _qch)))
+                                                + Math.Exp(_beta * (T0 - Tr - (_qAlpha * z) / (P * C * _qch))));
         }
         public double Viscosity(double T) {
-            return _mu0 * Math.Exp(-beta * (T - _Tr)) * Math.Pow(gammaPoit, _n - 1);
+            return Mu0 * Math.Exp(-_beta * (T - Tr)) * Math.Pow(_gammaPoint, N - 1);
         }
         public double Efficiency() {
-            Q = Math.Round(_p * Qch, 2);
+            Q = Math.Round(P * _qch, 2);
             return Q;
         }
     }

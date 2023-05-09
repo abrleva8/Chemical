@@ -8,11 +8,11 @@ namespace Don_tKnowHowToNameThis {
     /// Логика взаимодействия для Table.xaml
     /// </summary>
     public partial class Table : Window {
-        List<double> zCoords = new List<double>();
-        List<double> temperature = new List<double>();
-        List<double> viscosity = new List<double>();
-        BindingList<List> data = new BindingList<List>();
-        public Table(List<double> z, List<double> T, List<double> n) {
+        List<double>? zCoords = new();
+        List<double>? temperature = new();
+        List<double>? viscosity = new();
+        BindingList<List> data = new();
+        public Table(List<double>? z, List<double>? T, List<double>? n) {
             InitializeComponent();
             zCoords = z;
             temperature = T;
