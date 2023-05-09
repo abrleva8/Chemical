@@ -56,7 +56,6 @@ namespace Don_tKnowHowToNameThis {
         private double _qAlpha;
         private double _f;
         private double _qch;
-        public double Z = 0;
         public double Q;
 
         public Calc(double w, double h, double l, double step, double p, double c, double t0, double vu, double tu, double mu0, double ea, double tr, double n, double alphaU) {

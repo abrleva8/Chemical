@@ -98,13 +98,13 @@ namespace Don_tKnowHowToNameThis {
             if (!IsGood(_calc.AlphaUMin, _calc.AlphaUMax, alphaU))
                 isGoodData = false;
             if (!isGoodData) return false;
-            _calc = new Calc(Convert.ToDouble(W.Text), Convert.ToDouble(H.Text), Convert.ToDouble(L.Text), Convert.ToDouble(step.Text), Convert.ToDouble(p.Text), Convert.ToDouble(c.Text),
+            _calc = new(Convert.ToDouble(W.Text), Convert.ToDouble(H.Text), Convert.ToDouble(L.Text), Convert.ToDouble(step.Text), Convert.ToDouble(p.Text), Convert.ToDouble(c.Text),
                 Convert.ToDouble(T0.Text), Convert.ToDouble(Vu.Text), Convert.ToDouble(Tu.Text), Convert.ToDouble(mu0.Text), Convert.ToDouble(Ea.Text), Convert.ToDouble(Tr.Text),
                 Convert.ToDouble(n.Text), Convert.ToDouble(alphaU.Text));
-            _zCoord = new List<double>();
-            _temperature = new List<double>();
-            _viscosity = new List<double>();
-            _q = new List<double>();
+            _zCoord = new();
+            _temperature = new();
+            _viscosity = new();
+            _q = new();
 
             _calc.MaterialShearStrainRate();
             _calc.SpecificHeatFluxes();
@@ -145,7 +145,7 @@ namespace Don_tKnowHowToNameThis {
             }
 
             var fileName = sfd.FileName;
-            var excelWorker = fileName.Contains(".xlsx") ? new ExcelWorker(_zCoord, _temperature, _viscosity, _q,  fileName)
+            var excelWorker = fileName.Contains(".xlsx") ? new(_zCoord, _temperature, _viscosity, _q,  fileName)
                 : new ExcelWorker(_zCoord, _temperature, _viscosity, _q, fileName + ".xlsx");
             excelWorker.SaveToExel();
         }

@@ -7,11 +7,11 @@
         mc:Ignorable="d"
         Title="Table" Height="450" Width="603" Loaded="Window_Loaded">
     <Grid>
-        <DataGrid x:Name="table" AutoGenerateColumns="False">
+        <DataGrid x:Name="table" AutoGenerateColumns="False" d:DataContext="{d:DesignInstance }">
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding Path= _z}" Header="Координата по длине канала, м"  Width="200"/>
-                <DataGridTextColumn Binding="{Binding Path= _T}" Header="Температура" Width="200"/>
-                <DataGridTextColumn Binding="{Binding Path= _n}" Header="Вязкость, Па*С" Width="*"/>
+                <DataGridTextColumn Binding="{Binding Path= Z}" Header="Координата по длине канала, м"  Width="200"/>
+                <DataGridTextColumn Binding="{Binding Path= T}" Header="Температура" Width="200"/>
+                <DataGridTextColumn Binding="{Binding Path= N}" Header="Вязкость, Па*С" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

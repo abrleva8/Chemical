@@ -4,7 +4,6 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:lvc ="clr-namespace:LiveChartsCore.SkiaSharpView.WPF;assembly=LiveChartsCore.SkiaSharpView.WPF"
-        xmlns:local="clr-namespace:Don_tKnowHowToNameThis"
         mc:Ignorable="d"
         Title="Графики зависимости вязкости и температуры от длины координаты" Height="450" Width="1214">
     <Grid Margin="0,0,400,0">
