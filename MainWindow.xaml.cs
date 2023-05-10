@@ -5,7 +5,6 @@ using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using System.Windows.Media.Media3D;
 
 namespace Don_tKnowHowToNameThis {
     /// <summary>
@@ -17,6 +16,7 @@ namespace Don_tKnowHowToNameThis {
         private List<double>? _temperature;
         private List<double>? _viscosity;
         private List<double>? _q;
+        private string _currentMaterial;
         public MainWindow() {
             InitializeComponent();
             InitMaterialComboBox();
@@ -45,14 +45,18 @@ namespace Don_tKnowHowToNameThis {
         }
 
 
-        private void MenuItem_Click(object sender, RoutedEventArgs e) {
+        private void MenuItemTable_Click(object sender, RoutedEventArgs e) {
             if (!CalculateLists()) return;
             var table = new Table(_zCoord, _temperature, _viscosity);
             table.Show();
             eff.Content = _calc.Efficiency().ToString(CultureInfo.CurrentCulture);
             T.Content = Math.Round(_temperature![^1], 2).ToString(CultureInfo.CurrentCulture);
             visc.Content = Math.Round(_viscosity![^1], 2).ToString(CultureInfo.CurrentCulture);
+
+            _currentMaterial = MaterialComboBox.Text!;
+            
             menuItemPlot.IsEnabled = true;
+            
             excelSaveItem.IsEnabled = true;
         }
 
@@ -102,7 +106,15 @@ namespace Don_tKnowHowToNameThis {
                 isGoodData = false;
             if (!IsGood(_calc.AlphaUMin, _calc.AlphaUMax, alphaU))
                 isGoodData = false;
+
+            if (MaterialComboBox.Text == "") {
+                isGoodData = false;
+            }
+            
             if (!isGoodData) return false;
+            
+            
+            
             _calc = new(Convert.ToDouble(W.Text), Convert.ToDouble(H.Text), Convert.ToDouble(L.Text), Convert.ToDouble(step.Text), Convert.ToDouble(p.Text), Convert.ToDouble(c.Text),
                 Convert.ToDouble(T0.Text), Convert.ToDouble(Vu.Text), Convert.ToDouble(Tu.Text), Convert.ToDouble(mu0.Text), Convert.ToDouble(Ea.Text), Convert.ToDouble(Tr.Text),
                 Convert.ToDouble(n.Text), Convert.ToDouble(alphaU.Text));
@@ -150,8 +162,8 @@ namespace Don_tKnowHowToNameThis {
             }
 
             var fileName = sfd.FileName;
-            var excelWorker = fileName.Contains(".xlsx") ? new(_zCoord, _temperature, _viscosity, _q,  fileName)
-                : new ExcelWorker(_zCoord, _temperature, _viscosity, _q, fileName + ".xlsx");
+            fileName = fileName.Contains(".xlsx") ? fileName : fileName + ".xlsx";
+            ExcelWorker excelWorker = new(_zCoord, _temperature, _viscosity, _q, fileName, _currentMaterial);
             excelWorker.SaveToExel();
         }
     }

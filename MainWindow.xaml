@@ -25,7 +25,7 @@
                 <MenuItem Name="excelSaveItem" Header="Сохранить в Excel" Click="SaveExcel_Click" IsEnabled="False"/>
             </MenuItem>
             
-            <MenuItem x:Name="tableValueButton" Header="Таблица значений" Click="MenuItem_Click"></MenuItem>
+            <MenuItem x:Name="tableValueButton" Header="Таблица значений" Click="MenuItemTable_Click"></MenuItem>
             <MenuItem x:Name="menuItemPlot" Header="Графики" Click="menuItemPlot_Click" IsEnabled="False"></MenuItem>
         </Menu>
         <Label Grid.Column="4" Grid.Row="0" Content="Материал:" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="10,4,0,0" FontWeight="Bold" />

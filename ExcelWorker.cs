@@ -11,14 +11,24 @@ namespace Don_tKnowHowToNameThis {
         private readonly List<double>? _temperature;
         private readonly List<double>? _viscosity;
         private readonly List<double>? _q;
+        private string _currentMaterial;
         private readonly Calc _calc = new();
 
-        public ExcelWorker(List<double>? zCoord, List<double>? temperature, List<double>? viscosity, List<double>? q, string fileName) {
-            _zCoords = zCoord;
+        // public ExcelWorker(List<double>? zCoord, List<double>? temperature, List<double>? viscosity, List<double>? q, string fileName) {
+        //     _zCoords = zCoord;
+        //     _temperature = temperature;
+        //     _viscosity = viscosity;
+        //     _q = q;
+        //     Path = fileName;
+        // }
+
+        public ExcelWorker(List<double>? zCoords, List<double>? temperature, List<double>? viscosity, List<double>? q, string path, string currentMaterial) {
+            _zCoords = zCoords;
             _temperature = temperature;
             _viscosity = viscosity;
             _q = q;
-            Path = fileName;
+            _currentMaterial = currentMaterial;
+            Path = path;
         }
 
         public void SaveToExel() {
@@ -47,7 +57,7 @@ namespace Don_tKnowHowToNameThis {
             Dictionary<string, object> inputData = new()
             {
                 { "Входные данные",                                                     "" },
-                { "Тип материала",                                                      "Полистирол" },
+                { "Тип материала",                                                      _currentMaterial },
                 { "", ""},
                 { "Геометрические параметры канала:",                                   "" },
                 { "Ширина, м",                                                          _calc.W },
