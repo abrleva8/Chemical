@@ -16,7 +16,8 @@ namespace Don_tKnowHowToNameThis {
         private List<double>? _temperature;
         private List<double>? _viscosity;
         private List<double>? _q;
-        private string _currentMaterial;
+        private string _currentMaterial = null!;
+        private Calc _calc = new();
         public MainWindow() {
             InitializeComponent();
             InitMaterialComboBox();
@@ -30,17 +31,19 @@ namespace Don_tKnowHowToNameThis {
 
         // TODO: добавить сюда результат работы с бд
         private void InitialMaterials() {
-            var materialsValues = DataBaseWorker.GetMaterialsValues();
+            _calc.Material = Ro();
+        }
+
+        private Material Ro() {
+            var materialsValues = DataBaseWorker.GetMaterialsValues(MaterialComboBox.Text);
             double ro = Double.Parse(materialsValues["Плотность"]);
             double c = Double.Parse(materialsValues["Удельная теплоеёмкость"]);
             double t = Double.Parse(materialsValues["Температура плавления"]);
             Material m = new Material(ro, c, t);
-            _calc.P = ro;
-            _calc.T0 = t;
-            _calc.C = c;
+            return m;
         }
 
-        private Calc _calc = new Calc();
+       
         private void Window_Loaded(object sender, RoutedEventArgs e) {
             step.Text = _calc.Step.ToString(CultureInfo.CurrentCulture);
             W.Text = _calc.W.ToString(CultureInfo.CurrentCulture);
@@ -48,12 +51,8 @@ namespace Don_tKnowHowToNameThis {
             L.Text = _calc.L.ToString(CultureInfo.CurrentCulture);
             
             // TODO: получить из БД
-            p.Text = _calc.P.ToString(CultureInfo.CurrentCulture);
-            c.Text = _calc.C.ToString(CultureInfo.CurrentCulture);
-            T0.Text = _calc.T0.ToString(CultureInfo.CurrentCulture);
+            SetStartMaterialField();
             //
-            
-            
             
             Vu.Text = _calc.Vu.ToString(CultureInfo.CurrentCulture);
             Tu.Text = _calc.Tu.ToString(CultureInfo.CurrentCulture);
@@ -62,6 +61,12 @@ namespace Don_tKnowHowToNameThis {
             Tr.Text = _calc.Tr.ToString(CultureInfo.CurrentCulture);
             n.Text = _calc.N.ToString(CultureInfo.CurrentCulture);
             alphaU.Text = _calc.AlphaU.ToString(CultureInfo.CurrentCulture);
+        }
+
+        private void SetStartMaterialField() {
+            p.Text = _calc.Material.P.ToString(CultureInfo.CurrentCulture);
+            c.Text = _calc.Material.C.ToString(CultureInfo.CurrentCulture);
+            T0.Text = _calc.Material.T0.ToString(CultureInfo.CurrentCulture);
         }
 
 
@@ -184,8 +189,13 @@ namespace Don_tKnowHowToNameThis {
 
             var fileName = sfd.FileName;
             fileName = fileName.Contains(".xlsx") ? fileName : fileName + ".xlsx";
-            ExcelWorker excelWorker = new(_zCoord, _temperature, _viscosity, _q, fileName, _currentMaterial);
+            ExcelWorker excelWorker = new(_zCoord, _temperature, _viscosity, _q, fileName, _currentMaterial, _calc.Material);
             excelWorker.SaveToExel();
+        }
+
+        private void MaterialComboBox_DropDownClosed(object? sender, EventArgs e) {
+            InitialMaterials();
+            SetStartMaterialField();
         }
     }
 }

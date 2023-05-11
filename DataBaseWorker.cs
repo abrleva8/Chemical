@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Configuration;
 using MySql.Data.MySqlClient;
 
@@ -33,17 +32,19 @@ public class DataBaseWorker {
         return result;
     }
     
-    public static Dictionary<string, string> GetMaterialsValues() {
+    public static Dictionary<string, string> GetMaterialsValues(string selectedMaterial) {
 
         const string query = "select `Название_параметра`, `Величина`" +
-                     
                              "from `материал`" +
                              "join `параметры_свойств_материала` t on t.`ID_материала` = `материал`.ID_материала " +
                              "and t.Тип_параметра = \"Свойство материала\" " +
+                             "and `материал`.Тип = @material " +
                              "join `параметры` p on p.ID_Параметра = t.ID_Параметра";
+        
         using var connection = JoinBase();
         var command = new MySqlCommand();
         command.Connection = connection;
+        command.Parameters.AddWithValue("@material", selectedMaterial);
         command.CommandText = query;
         var reader = command.ExecuteReader();
         var result = new Dictionary<string, string>();

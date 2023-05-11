@@ -9,15 +9,9 @@ namespace Don_tKnowHowToNameThis {
         // TODO: make the step variable
         public readonly double Step = 0.1;
         
-        public double P = 1060; //ok
-        public double C = 1200; //ok
-        public double T0 = 175; //ok
-
         // public Material material = new Material(_P, _C, _T0);
-        public Material Material;
-        
-        
-        
+        public Material Material { get; set; }
+
         public readonly double Vu = 1.2; //ok
         public readonly double Tu = 220; //ok
         public readonly double Mu0 = 9000; //ok

@@ -7,9 +7,9 @@ public class Material {
     public double T0 { get; set; } //175
 
     public Material(double p, double c, double t0) {
-        P = 1060;
-        C = 1200;
-        T0 = 175;
+        P = p;
+        C = c;
+        T0 = t0;
     }
     
     public Material() {}

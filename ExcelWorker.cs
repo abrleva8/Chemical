@@ -12,15 +12,18 @@ namespace Don_tKnowHowToNameThis {
         private readonly List<double>? _viscosity;
         private readonly List<double>? _q;
         private readonly string _currentMaterial;
-        private readonly Calc _calc = new();
+        private readonly Calc _calc;
 
-        public ExcelWorker(List<double>? zCoords, List<double>? temperature, List<double>? viscosity, List<double>? q, string path, string currentMaterial) {
+        public ExcelWorker(List<double>? zCoords, List<double>? temperature, List<double>? viscosity, List<double>? q, string path, string currentMaterial, Material material) {
             _zCoords = zCoords;
             _temperature = temperature;
             _viscosity = viscosity;
             _q = q;
             _currentMaterial = currentMaterial;
             Path = path;
+            _calc = new() {
+                Material = material
+            };
         }
 
         public void SaveToExel() {
@@ -58,8 +61,8 @@ namespace Don_tKnowHowToNameThis {
                 { " ", ""},
                 { "Параметры свойств материала:",                                       ""},
                 { "Плотность, кг/м^3",                                                  Calc.R },
-                { "Удельная теплоёмкость, Дж/(кг*°С)",                                  _calc.C },
-                { "Температура плавления, °С",                                          _calc.T0 },
+                { "Удельная теплоёмкость, Дж/(кг*°С)",                                  _calc.Material.C },
+                { "Температура плавления, °С",                                          _calc.Material.T0 },
                 { "  ", ""},
                 { "Режимные параметры процесса:",                                       "" },
                 { "Скорость крышки, м/с",                                               _calc.Vu },
