@@ -6,11 +6,18 @@ namespace Don_tKnowHowToNameThis {
         public readonly double W = 0.20; //ok 
         public readonly double H = 0.009; //ok
         public readonly double L = 4.5; //ok
-        // TODO:make the step variable
+        // TODO: make the step variable
         public readonly double Step = 0.1;
-        public readonly double P = 1060; //ok
-        public readonly double C = 1200; //ok
-        public readonly double T0 = 175; //ok
+        
+        public double P = 1060; //ok
+        public double C = 1200; //ok
+        public double T0 = 175; //ok
+
+        // public Material material = new Material(_P, _C, _T0);
+        public Material Material;
+        
+        
+        
         public readonly double Vu = 1.2; //ok
         public readonly double Tu = 220; //ok
         public readonly double Mu0 = 9000; //ok
@@ -63,9 +70,10 @@ namespace Don_tKnowHowToNameThis {
             H = h;
             L = l;
             Step = step;
-            P = p;
-            C = c;
-            T0 = t0;
+            Material = new (p, c, t0);
+            // P = p;
+            // C = c;
+            // T0 = t0;
             Vu = vu;
             Tu = tu;
             Mu0 = mu0;
@@ -75,14 +83,20 @@ namespace Don_tKnowHowToNameThis {
             AlphaU = alphaU;
         }
 
-        public Calc() { }
+        public Calc() {
+            Material = new Material();
+        }
+
+        public Calc(Material material) {
+            Material = material;
+        }
 
         public void MaterialShearStrainRate() {
             _gammaPoint = Vu / H;
         }
         public void SpecificHeatFluxes() {
             _qGamma = H * W * Mu0 * Math.Pow(_gammaPoint, N + 1);
-            _beta = Ea / (R * (T0 + 20 + 273) * (Tr + 273));
+            _beta = Ea / (R * (Material.T0 + 20 + 273) * (Tr + 273));
             _qAlpha = W * AlphaU * (Math.Pow(_beta, -1) - Tu + Tr);
         }
         public void VolumeFlowRateOfMaterialFlowInTheChannel() {
@@ -91,14 +105,14 @@ namespace Don_tKnowHowToNameThis {
         }
 
         public double Temperature(double z) {
-            return Tr + (1 / _beta) * Math.Log((_beta * _qGamma + W * AlphaU) / (_beta * _qAlpha) * (1 - Math.Exp((-_beta * _qAlpha * z) / (P * C * _qch)))
-                                                + Math.Exp(_beta * (T0 - Tr - (_qAlpha * z) / (P * C * _qch))));
+            return Tr + (1 / _beta) * Math.Log((_beta * _qGamma + W * AlphaU) / (_beta * _qAlpha) * (1 - Math.Exp((-_beta * _qAlpha * z) / (Material.P * Material.C * _qch)))
+                                                + Math.Exp(_beta * (Material.T0 - Tr - (_qAlpha * z) / (Material.P * Material.C * _qch))));
         }
         public double Viscosity(double T) {
             return Mu0 * Math.Exp(-_beta * (T - Tr)) * Math.Pow(_gammaPoint, N - 1);
         }
         public double Efficiency() {
-            Q = Math.Round(P * _qch, 2);
+            Q = Math.Round(Material.P * _qch, 2);
             return Q;
         }
     }

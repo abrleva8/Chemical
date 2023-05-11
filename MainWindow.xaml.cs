@@ -20,21 +20,41 @@ namespace Don_tKnowHowToNameThis {
         public MainWindow() {
             InitializeComponent();
             InitMaterialComboBox();
+            InitialMaterials();
         }
 
         private void InitMaterialComboBox() {
             DataBaseWorker.GetMaterials().ForEach(material => MaterialComboBox.Items.Add(material));
+            MaterialComboBox.SelectedIndex = 0;
         }
 
-        private Calc _calc = new();
+        // TODO: добавить сюда результат работы с бд
+        private void InitialMaterials() {
+            var materialsValues = DataBaseWorker.GetMaterialsValues();
+            double ro = Double.Parse(materialsValues["Плотность"]);
+            double c = Double.Parse(materialsValues["Удельная теплоеёмкость"]);
+            double t = Double.Parse(materialsValues["Температура плавления"]);
+            Material m = new Material(ro, c, t);
+            _calc.P = ro;
+            _calc.T0 = t;
+            _calc.C = c;
+        }
+
+        private Calc _calc = new Calc();
         private void Window_Loaded(object sender, RoutedEventArgs e) {
             step.Text = _calc.Step.ToString(CultureInfo.CurrentCulture);
             W.Text = _calc.W.ToString(CultureInfo.CurrentCulture);
             H.Text = _calc.H.ToString(CultureInfo.CurrentCulture);
             L.Text = _calc.L.ToString(CultureInfo.CurrentCulture);
+            
+            // TODO: получить из БД
             p.Text = _calc.P.ToString(CultureInfo.CurrentCulture);
             c.Text = _calc.C.ToString(CultureInfo.CurrentCulture);
             T0.Text = _calc.T0.ToString(CultureInfo.CurrentCulture);
+            //
+            
+            
+            
             Vu.Text = _calc.Vu.ToString(CultureInfo.CurrentCulture);
             Tu.Text = _calc.Tu.ToString(CultureInfo.CurrentCulture);
             mu0.Text = _calc.Mu0.ToString(CultureInfo.CurrentCulture);
@@ -112,8 +132,8 @@ namespace Don_tKnowHowToNameThis {
             }
             
             if (!isGoodData) return false;
-            
-            
+
+            var material = new Material(Convert.ToDouble(p.Text), Convert.ToDouble(c.Text), Convert.ToDouble(T0.Text));
             
             _calc = new(Convert.ToDouble(W.Text), Convert.ToDouble(H.Text), Convert.ToDouble(L.Text), Convert.ToDouble(step.Text), Convert.ToDouble(p.Text), Convert.ToDouble(c.Text),
                 Convert.ToDouble(T0.Text), Convert.ToDouble(Vu.Text), Convert.ToDouble(Tu.Text), Convert.ToDouble(mu0.Text), Convert.ToDouble(Ea.Text), Convert.ToDouble(Tr.Text),
@@ -135,6 +155,7 @@ namespace Don_tKnowHowToNameThis {
                 _viscosity.Add(viscosity);
                 _q.Add(_calc.Efficiency());
             }
+            
             return true;
         }
 
