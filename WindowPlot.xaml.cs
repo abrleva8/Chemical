@@ -14,12 +14,13 @@ namespace Don_tKnowHowToNameThis {
         //public SeriesCollection SeriesCollection { get; set; }
         public String[] Labels { get; set; }
 
-        public WindowPlot(List<double>? zCoord, List<double>? temperature, List<double>? viscocity, string effic, string tem, string vis) {
+        public WindowPlot(List<double>? zCoord, List<double>? temperature, List<double>? viscocity, string effic, string tem, string vis, TimeSpan timeSpan, long memoryUsed) {
             InitializeComponent();
             eff.Content = effic;
             T.Content = tem;
             visc.Content = vis;
-
+            time.Content = Math.Round(timeSpan.TotalMilliseconds, 3).ToString(CultureInfo.CurrentCulture) ;
+            mem.Content = memoryUsed;
             Plot temperatureChart = new Plot(zCoord, temperature, "Температура, °C", "Температура");
             test.DataContext = temperatureChart;
 

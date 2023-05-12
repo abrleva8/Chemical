@@ -31,15 +31,57 @@
             <lvc:CartesianChart Name="test2"  Series="{Binding Series}" XAxes="{Binding XAxes}" YAxes="{Binding YAxes}" 
                                         DrawMarginFrame="{Binding Frame}" TooltipPosition="Top" Margin="607,0,-1211,0"/>
         </Grid>
-        <Label Grid.Column="3" Content="Производительность:" HorizontalAlignment="Left" Margin="20,20,0,0" VerticalAlignment="Top"/>
-        <Label Grid.Column="3" Content="Температура:" HorizontalAlignment="Left" Margin="20,60,0,0" VerticalAlignment="Top"/>
-        <Label Grid.Column="3" Content="Вязкость:" HorizontalAlignment="Left" Margin="20,100,0,0" VerticalAlignment="Top"/>
-        <Label Grid.Column="3" Name="eff" Content="1" HorizontalAlignment="Left" Margin="180,20,0,0" VerticalAlignment="Top"/>
-        <Label Grid.Column="3" Name="T" Content="2" HorizontalAlignment="Left" Margin="180,60,0,0" VerticalAlignment="Top"/>
-        <Label Grid.Column="3" Name="visc" Content="3" HorizontalAlignment="Left" Margin="180,100,0,0" VerticalAlignment="Top"/>
-        <Label Grid.Column="3" Content="Дж/моль" HorizontalAlignment="Left" Margin="225,20,0,0" VerticalAlignment="Top"/>
-        <Label Grid.Column="3" Content="°С" HorizontalAlignment="Left" Margin="225,60,0,0" VerticalAlignment="Top"/>
-        <Label Grid.Column="3" Content="Па * с" HorizontalAlignment="Left" Margin="225,100,0,0" VerticalAlignment="Top"/>
+        <GroupBox Header="Выходные параметры:" Grid.Column="3" Margin="10,0,5,188" VerticalAlignment="Bottom" Height="223">
+            <Grid Height="223" Margin="10,0,-2,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+
+                </Grid.RowDefinitions>
+                <Label Grid.Column="0" Grid.Row="0" Content="Производительность:" HorizontalAlignment="Left" Margin="3,0,0,0" VerticalAlignment="Center"/>
+                <Label Grid.Column="0" Grid.Row="1" Content="Температура:" HorizontalAlignment="Left" Margin="3,0,0,0" VerticalAlignment="Center"/>
+                <Label Grid.Column="0" Grid.Row="2" Content="Вязкость:" HorizontalAlignment="Left" Margin="3,0,0,0" VerticalAlignment="Center"/>
+
+                <Label Grid.Column="1" Grid.Row="0" Name="eff" Content="1" HorizontalAlignment="Left" Margin="20,0,0,0" VerticalAlignment="Center"/>
+                <Label Grid.Column="1" Grid.Row="1" Name="T" Content="2" HorizontalAlignment="Left" Margin="20,0,0,0" VerticalAlignment="Center"/>
+                <Label Grid.Column="1" Grid.Row="2" Name="visc" Content="3" HorizontalAlignment="Left" Margin="20,0,0,0" VerticalAlignment="Center"/>
+
+                <Label Grid.Column="2" Grid.Row="0" Content="Дж/моль" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Center"/>
+                <Label Grid.Column="2" Grid.Row="1" Content="°С" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Center"/>
+                <Label Grid.Column="2" Grid.Row="2" Content="Па * с" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Center"/>
+
+            </Grid>
+        </GroupBox>
+        <GroupBox Header="Технические характеристики:" Grid.Column="3" Margin="10,251,5,0" VerticalAlignment="Top" Height="145">
+            <Grid Height="131" Margin="0,0,-2,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Label Grid.Column="0" Grid.Row="0" Content="Время работы:" HorizontalAlignment="Left" Margin="3,0,0,0" VerticalAlignment="Center"/>
+                <Label Grid.Column="0" Grid.Row="1" Content="Затраченная " HorizontalAlignment="Left" Margin="3,0,0,0" VerticalAlignment="Center" Width="84"/>
+                <Label Grid.Column="0" Grid.Row="1" Content="оперативная память:" HorizontalAlignment="Left" Margin="3,25,0,0" VerticalAlignment="Center" Width="129"/>
+                <Label Grid.Column="1" Grid.Row="0" Name="time" Content="4" HorizontalAlignment="Left" Margin="20,0,0,0" VerticalAlignment="Center"/>
+                <Label Grid.Column="1" Grid.Row="1" Name="mem" Content="5" HorizontalAlignment="Left" Margin="20,12,0,0" VerticalAlignment="Center"/>
+                <Label Grid.Column="2" Grid.Row="0" Content="мс" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Center"/>
+                <Label Grid.Column="2" Grid.Row="1" Content="МБ" HorizontalAlignment="Left" Margin="0,12,0,0" VerticalAlignment="Center"/>
+            </Grid>
+        </GroupBox>
+
+
+
 
     </Grid>
 

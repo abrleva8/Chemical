@@ -5,6 +5,7 @@ using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Diagnostics;
 
 namespace Don_tKnowHowToNameThis {
     /// <summary>
@@ -80,7 +81,7 @@ namespace Don_tKnowHowToNameThis {
 
 
         private void MenuItemTable_Click(object sender, RoutedEventArgs e) {
-            if (!CalculateLists()) return;
+            if (! CalculateLists()) return;
             var table = new Table(_zCoord, _temperature, _viscosity);
             table.Show();
             //eff.Content = _calc.Efficiency().ToString(CultureInfo.CurrentCulture);
@@ -186,10 +187,20 @@ namespace Don_tKnowHowToNameThis {
         }
 
         private void menuItemPlot_Click(object sender, RoutedEventArgs e) {
+            Stopwatch stopwatch = new Stopwatch();
+            Process currentProcess = Process.GetCurrentProcess();
+            stopwatch.Start();
+            if (!CalculateLists()){
+                stopwatch.Stop();
+                return; 
+            }
+            long memoryUsed = currentProcess.WorkingSet64 / 1024 / 1024;
+            stopwatch.Stop();
+            TimeSpan timeSpan = stopwatch.Elapsed;
             string effic = _calc.Efficiency().ToString(CultureInfo.CurrentCulture);
             string tem = Math.Round(_temperature![^1], 2).ToString(CultureInfo.CurrentCulture);
             string vis = Math.Round(_viscosity![^1], 2).ToString(CultureInfo.CurrentCulture);
-            var windowPlot = new WindowPlot(_zCoord, _temperature, _viscosity, effic, tem, vis);
+            var windowPlot = new WindowPlot(_zCoord, _temperature, _viscosity, effic, tem, vis, timeSpan, memoryUsed);
             windowPlot.Show();
         }
 
