@@ -59,15 +59,12 @@ namespace Don_tKnowHowToNameThis {
         private double _qch;
         public double Q;
 
-        public Calc(double w, double h, double l, double step, double p, double c, double t0, double vu, double tu, double mu0, double ea, double tr, double n, double alphaU) {
+        public Calc(double w, double h, double l, double step, Material material, double vu, double tu, double mu0, double ea, double tr, double n, double alphaU) {
             W = w;
             H = h;
             L = l;
             Step = step;
-            Material = new (p, c, t0);
-            // P = p;
-            // C = c;
-            // T0 = t0;
+            Material = material;
             Vu = vu;
             Tu = tu;
             Mu0 = mu0;

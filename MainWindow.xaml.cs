@@ -140,8 +140,7 @@ namespace Don_tKnowHowToNameThis {
 
             var material = new Material(Convert.ToDouble(p.Text), Convert.ToDouble(c.Text), Convert.ToDouble(T0.Text));
             
-            _calc = new(Convert.ToDouble(W.Text), Convert.ToDouble(H.Text), Convert.ToDouble(L.Text), Convert.ToDouble(step.Text), Convert.ToDouble(p.Text), Convert.ToDouble(c.Text),
-                Convert.ToDouble(T0.Text), Convert.ToDouble(Vu.Text), Convert.ToDouble(Tu.Text), Convert.ToDouble(mu0.Text), Convert.ToDouble(Ea.Text), Convert.ToDouble(Tr.Text),
+            _calc = new(Convert.ToDouble(W.Text), Convert.ToDouble(H.Text), Convert.ToDouble(L.Text), Convert.ToDouble(step.Text), material, Convert.ToDouble(Vu.Text), Convert.ToDouble(Tu.Text), Convert.ToDouble(mu0.Text), Convert.ToDouble(Ea.Text), Convert.ToDouble(Tr.Text),
                 Convert.ToDouble(n.Text), Convert.ToDouble(alphaU.Text));
             _zCoord = new();
             _temperature = new();
