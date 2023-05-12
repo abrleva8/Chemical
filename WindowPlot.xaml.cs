@@ -1,5 +1,7 @@
-﻿using System;
+﻿using K4os.Compression.LZ4.Internal;
+using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Windows;
 
 namespace Don_tKnowHowToNameThis {
@@ -12,9 +14,11 @@ namespace Don_tKnowHowToNameThis {
         //public SeriesCollection SeriesCollection { get; set; }
         public String[] Labels { get; set; }
 
-        public WindowPlot(List<double>? zCoord, List<double>? temperature, List<double>? viscocity) {
+        public WindowPlot(List<double>? zCoord, List<double>? temperature, List<double>? viscocity, string effic, string tem, string vis) {
             InitializeComponent();
-
+            eff.Content = effic;
+            T.Content = tem;
+            visc.Content = vis;
 
             Plot temperatureChart = new Plot(zCoord, temperature, "Температура, °C", "Температура");
             test.DataContext = temperatureChart;
@@ -44,5 +48,7 @@ namespace Don_tKnowHowToNameThis {
 
             DataContext = this;*/
         }
+
+        
     }
 }

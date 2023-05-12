@@ -83,9 +83,9 @@ namespace Don_tKnowHowToNameThis {
             if (!CalculateLists()) return;
             var table = new Table(_zCoord, _temperature, _viscosity);
             table.Show();
-            eff.Content = _calc.Efficiency().ToString(CultureInfo.CurrentCulture);
-            T.Content = Math.Round(_temperature![^1], 2).ToString(CultureInfo.CurrentCulture);
-            visc.Content = Math.Round(_viscosity![^1], 2).ToString(CultureInfo.CurrentCulture);
+            //eff.Content = _calc.Efficiency().ToString(CultureInfo.CurrentCulture);
+            //T.Content = Math.Round(_temperature![^1], 2).ToString(CultureInfo.CurrentCulture);
+            //visc.Content = Math.Round(_viscosity![^1], 2).ToString(CultureInfo.CurrentCulture);
 
             _currentMaterial = MaterialComboBox.Text!;
             
@@ -186,7 +186,10 @@ namespace Don_tKnowHowToNameThis {
         }
 
         private void menuItemPlot_Click(object sender, RoutedEventArgs e) {
-            var windowPlot = new WindowPlot(_zCoord, _temperature, _viscosity);
+            string effic = _calc.Efficiency().ToString(CultureInfo.CurrentCulture);
+            string tem = Math.Round(_temperature![^1], 2).ToString(CultureInfo.CurrentCulture);
+            string vis = Math.Round(_viscosity![^1], 2).ToString(CultureInfo.CurrentCulture);
+            var windowPlot = new WindowPlot(_zCoord, _temperature, _viscosity, effic, tem, vis);
             windowPlot.Show();
         }
 

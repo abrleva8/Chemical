@@ -5,12 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:lvc ="clr-namespace:LiveChartsCore.SkiaSharpView.WPF;assembly=LiveChartsCore.SkiaSharpView.WPF"
         mc:Ignorable="d"
-        Title="Графики зависимости вязкости и температуры от длины координаты" Height="450" Width="1214">
-    <Grid Margin="0,0,400,0">
+        Title="Графики зависимости вязкости и температуры от длины координаты" Height="450" Width="1500">
+    <Grid Margin="0,0,0,0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="400*"/>
             <ColumnDefinition Width="400*"/>
+            <ColumnDefinition Width="200*"/>
         </Grid.ColumnDefinitions>
 
         <Grid Background="#FFE5E5E5">
@@ -30,6 +31,16 @@
             <lvc:CartesianChart Name="test2"  Series="{Binding Series}" XAxes="{Binding XAxes}" YAxes="{Binding YAxes}" 
                                         DrawMarginFrame="{Binding Frame}" TooltipPosition="Top" Margin="607,0,-1211,0"/>
         </Grid>
+        <Label Grid.Column="3" Content="Производительность:" HorizontalAlignment="Left" Margin="20,20,0,0" VerticalAlignment="Top"/>
+        <Label Grid.Column="3" Content="Температура:" HorizontalAlignment="Left" Margin="20,60,0,0" VerticalAlignment="Top"/>
+        <Label Grid.Column="3" Content="Вязкость:" HorizontalAlignment="Left" Margin="20,100,0,0" VerticalAlignment="Top"/>
+        <Label Grid.Column="3" Name="eff" Content="1" HorizontalAlignment="Left" Margin="180,20,0,0" VerticalAlignment="Top"/>
+        <Label Grid.Column="3" Name="T" Content="2" HorizontalAlignment="Left" Margin="180,60,0,0" VerticalAlignment="Top"/>
+        <Label Grid.Column="3" Name="visc" Content="3" HorizontalAlignment="Left" Margin="180,100,0,0" VerticalAlignment="Top"/>
+        <Label Grid.Column="3" Content="Дж/моль" HorizontalAlignment="Left" Margin="225,20,0,0" VerticalAlignment="Top"/>
+        <Label Grid.Column="3" Content="°С" HorizontalAlignment="Left" Margin="225,60,0,0" VerticalAlignment="Top"/>
+        <Label Grid.Column="3" Content="Па * с" HorizontalAlignment="Left" Margin="225,100,0,0" VerticalAlignment="Top"/>
 
     </Grid>
+
 </Window>
