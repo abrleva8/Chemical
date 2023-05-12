@@ -3,14 +3,16 @@
 namespace Don_tKnowHowToNameThis {
     public class Calc {
         public const double R = 8.314; //ok
-        public readonly double W = 0.20; //ok 
-        public readonly double H = 0.009; //ok
-        public readonly double L = 4.5; //ok
+       
+        // public readonly double W = 0.20; //ok 
+        // public readonly double H = 0.009; //ok
+        // public readonly double L = 4.5; //ok
+        
         // TODO: make the step variable
         public readonly double Step = 0.1;
         
-        // public Material material = new Material(_P, _C, _T0);
         public Material Material { get; set; }
+        public Channel Channel { get; set; }
 
         public readonly double Vu = 1.2; //ok
         public readonly double Tu = 220; //ok
@@ -59,10 +61,14 @@ namespace Don_tKnowHowToNameThis {
         private double _qch;
         public double Q;
 
-        public Calc(double w, double h, double l, double step, Material material, double vu, double tu, double mu0, double ea, double tr, double n, double alphaU) {
-            W = w;
-            H = h;
-            L = l;
+        public Calc(Channel channel, double step, Material material, double vu, double tu, double mu0, double ea, double tr, double n, double alphaU) {
+            
+            
+            // W = w;
+            // H = h;
+            // L = l;
+            Channel = channel;
+            
             Step = step;
             Material = material;
             Vu = vu;
@@ -75,7 +81,7 @@ namespace Don_tKnowHowToNameThis {
         }
 
         public Calc() {
-            Material = new Material();
+            Material = new ();
         }
 
         public Calc(Material material) {
@@ -83,20 +89,20 @@ namespace Don_tKnowHowToNameThis {
         }
 
         public void MaterialShearStrainRate() {
-            _gammaPoint = Vu / H;
+            _gammaPoint = Vu / Channel.H;
         }
         public void SpecificHeatFluxes() {
-            _qGamma = H * W * Mu0 * Math.Pow(_gammaPoint, N + 1);
+            _qGamma = Channel.H * Channel.W * Mu0 * Math.Pow(_gammaPoint, N + 1);
             _beta = Ea / (R * (Material.T0 + 20 + 273) * (Tr + 273));
-            _qAlpha = W * AlphaU * (Math.Pow(_beta, -1) - Tu + Tr);
+            _qAlpha = Channel.W * AlphaU * (Math.Pow(_beta, -1) - Tu + Tr);
         }
         public void VolumeFlowRateOfMaterialFlowInTheChannel() {
-            _f = 0.125 * Math.Pow(H / W, 2) - 0.625 * (H / W) + 1;
-            _qch = H * W * Vu * _f / 2;
+            _f = 0.125 * Math.Pow(Channel.H /Channel. W, 2) - 0.625 * (Channel.H / Channel.W) + 1;
+            _qch = Channel.H * Channel.W * Vu * _f / 2;
         }
 
         public double Temperature(double z) {
-            return Tr + (1 / _beta) * Math.Log((_beta * _qGamma + W * AlphaU) / (_beta * _qAlpha) * (1 - Math.Exp((-_beta * _qAlpha * z) / (Material.P * Material.C * _qch)))
+            return Tr + (1 / _beta) * Math.Log((_beta * _qGamma + Channel.W * AlphaU) / (_beta * _qAlpha) * (1 - Math.Exp((-_beta * _qAlpha * z) / (Material.P * Material.C * _qch)))
                                                 + Math.Exp(_beta * (Material.T0 - Tr - (_qAlpha * z) / (Material.P * Material.C * _qch))));
         }
         public double Viscosity(double T) {

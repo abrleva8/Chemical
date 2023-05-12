@@ -14,16 +14,14 @@ namespace Don_tKnowHowToNameThis {
         private readonly string _currentMaterial;
         private readonly Calc _calc;
 
-        public ExcelWorker(List<double>? zCoords, List<double>? temperature, List<double>? viscosity, List<double>? q, string path, string currentMaterial, Material material) {
+        public ExcelWorker(List<double>? zCoords, List<double>? temperature, List<double>? viscosity, List<double>? q, string path, string currentMaterial, Calc calc) {
             _zCoords = zCoords;
             _temperature = temperature;
             _viscosity = viscosity;
             _q = q;
             _currentMaterial = currentMaterial;
             Path = path;
-            _calc = new() {
-                Material = material
-            };
+            _calc = calc;
         }
 
         public void SaveToExel() {
@@ -55,9 +53,9 @@ namespace Don_tKnowHowToNameThis {
                 { "Тип материала",                                                      _currentMaterial },
                 { "", ""},
                 { "Геометрические параметры канала:",                                   "" },
-                { "Ширина, м",                                                          _calc.W },
-                { "Глубина, м",                                                         _calc.H },
-                { "Длина, м",                                                           _calc.L },
+                { "Ширина, м",                                                          _calc.Channel.W },
+                { "Глубина, м",                                                         _calc.Channel.H },
+                { "Длина, м",                                                           _calc.Channel.L },
                 { " ", ""},
                 { "Параметры свойств материала:",                                       ""},
                 { "Плотность, кг/м^3",                                                  _calc.Material.P },

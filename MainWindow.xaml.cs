@@ -22,6 +22,7 @@ namespace Don_tKnowHowToNameThis {
             InitializeComponent();
             InitMaterialComboBox();
             InitialMaterials();
+            InitialChannels();
         }
 
         private void InitMaterialComboBox() {
@@ -31,10 +32,18 @@ namespace Don_tKnowHowToNameThis {
 
         // TODO: добавить сюда результат работы с бд
         private void InitialMaterials() {
-            _calc.Material = Ro();
+            _calc.Material = GetMaterialsFromBd();
+        }
+        
+        private void InitialChannels() {
+            _calc.Channel = GetChannelFromBd();
         }
 
-        private Material Ro() {
+        private Channel GetChannelFromBd() {
+            return new (0.20, 0.009, 4.5);
+        }
+
+        private Material GetMaterialsFromBd() {
             var materialsValues = DataBaseWorker.GetMaterialsValues(MaterialComboBox.Text);
             double ro = Double.Parse(materialsValues["Плотность"]);
             double c = Double.Parse(materialsValues["Удельная теплоеёмкость"]);
@@ -46,9 +55,9 @@ namespace Don_tKnowHowToNameThis {
        
         private void Window_Loaded(object sender, RoutedEventArgs e) {
             step.Text = _calc.Step.ToString(CultureInfo.CurrentCulture);
-            W.Text = _calc.W.ToString(CultureInfo.CurrentCulture);
-            H.Text = _calc.H.ToString(CultureInfo.CurrentCulture);
-            L.Text = _calc.L.ToString(CultureInfo.CurrentCulture);
+            W.Text = _calc.Channel.W.ToString(CultureInfo.CurrentCulture);
+            H.Text = _calc.Channel.H.ToString(CultureInfo.CurrentCulture);
+            L.Text = _calc.Channel.L.ToString(CultureInfo.CurrentCulture);
             
             // TODO: получить из БД
             SetStartMaterialField();
@@ -139,8 +148,9 @@ namespace Don_tKnowHowToNameThis {
             if (!isGoodData) return false;
 
             var material = new Material(Convert.ToDouble(p.Text), Convert.ToDouble(c.Text), Convert.ToDouble(T0.Text));
+            var channel = new Channel(Convert.ToDouble(W.Text), Convert.ToDouble(H.Text), Convert.ToDouble(L.Text));
             
-            _calc = new(Convert.ToDouble(W.Text), Convert.ToDouble(H.Text), Convert.ToDouble(L.Text), Convert.ToDouble(step.Text), material, Convert.ToDouble(Vu.Text), Convert.ToDouble(Tu.Text), Convert.ToDouble(mu0.Text), Convert.ToDouble(Ea.Text), Convert.ToDouble(Tr.Text),
+            _calc = new(channel, Convert.ToDouble(step.Text), material, Convert.ToDouble(Vu.Text), Convert.ToDouble(Tu.Text), Convert.ToDouble(mu0.Text), Convert.ToDouble(Ea.Text), Convert.ToDouble(Tr.Text),
                 Convert.ToDouble(n.Text), Convert.ToDouble(alphaU.Text));
             _zCoord = new();
             _temperature = new();
@@ -151,7 +161,7 @@ namespace Don_tKnowHowToNameThis {
             _calc.SpecificHeatFluxes();
             _calc.VolumeFlowRateOfMaterialFlowInTheChannel();
 
-            for (double z = 0; z <= _calc.L; z += _calc.Step) {
+            for (double z = 0; z <= _calc.Channel.L; z += _calc.Step) {
                 _zCoord.Add(z);
                 var temperature = _calc.Temperature(z);
                 _temperature.Add(temperature);
@@ -185,10 +195,10 @@ namespace Don_tKnowHowToNameThis {
             if (sfd.ShowDialog() == false) {
                 return;
             }
-
+            // TODO: убрать материал из эксельворкера отстальвить только calc
             var fileName = sfd.FileName;
             fileName = fileName.Contains(".xlsx") ? fileName : fileName + ".xlsx";
-            ExcelWorker excelWorker = new(_zCoord, _temperature, _viscosity, _q, fileName, _currentMaterial, _calc.Material);
+            ExcelWorker excelWorker = new(_zCoord, _temperature, _viscosity, _q, fileName, _currentMaterial, _calc);
             excelWorker.SaveToExel();
         }
 
