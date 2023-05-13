@@ -1,0 +1,26 @@
+﻿<Window x:Class="Don_tKnowHowToNameThis.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Don_tKnowHowToNameThis"
+        mc:Ignorable="d"
+        Title="LoginWindow" Height="204" Width="243"
+        WindowStartupLocation="CenterScreen">
+    <Grid>
+
+        <StackPanel Margin="5">
+            <Label Content="Авторизация" HorizontalContentAlignment="Center"/>
+            
+            <Label Content="Имя пользователя" Target="{Binding ElementName=LoginTextBox}" />
+            <TextBox Name="LoginTextBox" />
+            
+            <Label Content="Пароль" Target="{Binding ElementName=PasswordTextBox}" />
+            <PasswordBox Name="PasswordTextBox" />
+            
+            <Button Margin="20 20" Width="110" Click="StartUserWindow">OK</Button>
+            
+        </StackPanel>
+
+    </Grid>
+</Window>
