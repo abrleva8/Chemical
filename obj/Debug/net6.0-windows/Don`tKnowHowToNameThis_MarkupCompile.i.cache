@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\abrle\Source\Repos\Chemical\obj\Debug\net6.0-windows\
+C:\Users\abrle\source\repos\Chemical\obj\Debug\net6.0-windows\
 Don_tKnowHowToNameThis
 none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
-C:\Users\abrle\Source\Repos\Chemical\App.xaml
-3-901801878
+C:\Users\abrle\source\repos\Chemical\App.xaml
+4343414661
 
-14-904165782
+151504129433
 223736059977
-MainWindow.xaml;Table.xaml;WindowPlot.xaml;
+LoginningWindow.xaml;MainWindow.xaml;Table.xaml;WindowPlot.xaml;
 
-False
+True
 
