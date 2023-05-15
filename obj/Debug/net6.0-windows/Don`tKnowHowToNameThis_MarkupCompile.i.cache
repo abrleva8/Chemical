@@ -1,5 +1,5 @@
 ﻿Don`tKnowHowToNameThis
-
+1.0.0.0
 
 winexe
 C#
@@ -12,9 +12,9 @@ TRACE;DEBUG;NET;NET6_0;NETCOREAPP
 C:\Users\abrle\Source\Repos\Chemical\App.xaml
 5879008499
 
-15-2117982831
+17627587585
 223736059977
 AdminWindow.xaml;LoginWindow.xaml;MainWindow.xaml;Table.xaml;WindowPlot.xaml;
 
-False
+True
 

@@ -24,6 +24,7 @@ public partial class LoginWindow {
 
         switch (user) {
             case "admin":
+                new AdminWindow().Show();
                 break;
             case "user":
                 new MainWindow().Show();

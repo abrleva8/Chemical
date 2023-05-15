@@ -144,7 +144,9 @@ C:\Users\abrle\Source\Repos\Chemical\obj\Debug\net6.0-windows\refint\Don`tKnowHo
 C:\Users\abrle\Source\Repos\Chemical\obj\Debug\net6.0-windows\Don`tKnowHowToNameThis.pdb
 C:\Users\abrle\Source\Repos\Chemical\obj\Debug\net6.0-windows\Don`tKnowHowToNameThis.genruntimeconfig.cache
 C:\Users\abrle\Source\Repos\Chemical\obj\Debug\net6.0-windows\ref\Don`tKnowHowToNameThis.dll
-C:\Users\abrle\source\repos\Chemical\obj\Debug\net6.0-windows\LoginningWindow.g.cs
-C:\Users\abrle\source\repos\Chemical\obj\Debug\net6.0-windows\LoginningWindow.baml
 C:\Users\abrle\RiderProjects\Chemical\obj\Debug\net6.0-windows\LoginWindow.g.cs
 C:\Users\abrle\RiderProjects\Chemical\obj\Debug\net6.0-windows\LoginWindow.baml
+C:\Users\abrle\Source\Repos\Chemical\obj\Debug\net6.0-windows\LoginWindow.g.cs
+C:\Users\abrle\Source\Repos\Chemical\obj\Debug\net6.0-windows\LoginWindow.baml
+C:\Users\abrle\Source\Repos\Chemical\obj\Debug\net6.0-windows\AdminWindow.g.cs
+C:\Users\abrle\Source\Repos\Chemical\obj\Debug\net6.0-windows\AdminWindow.baml
