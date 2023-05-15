@@ -46,10 +46,10 @@ namespace Don_tKnowHowToNameThis {
 
         private Material GetMaterialsFromBd() {
             var materialsValues = DataBaseWorker.GetMaterialsValues(MaterialComboBox.Text);
-            double ro = Double.Parse(materialsValues["Плотность"]);
-            double c = Double.Parse(materialsValues["Удельная теплоеёмкость"]);
-            double t = Double.Parse(materialsValues["Температура плавления"]);
-            Material m = new Material(ro, c, t);
+            var ro = double.Parse(materialsValues["Плотность"]);
+            var c = double.Parse(materialsValues["Удельная теплоеёмкость"]);
+            var t = double.Parse(materialsValues["Температура плавления"]);
+            var m = new Material(ro, c, t);
             return m;
         }
 
@@ -187,20 +187,20 @@ namespace Don_tKnowHowToNameThis {
         }
 
         private void menuItemPlot_Click(object sender, RoutedEventArgs e) {
-            Stopwatch stopwatch = new Stopwatch();
-            Process currentProcess = Process.GetCurrentProcess();
+            var stopwatch = new Stopwatch();
+            var currentProcess = Process.GetCurrentProcess();
             stopwatch.Start();
             if (!CalculateLists()){
                 stopwatch.Stop();
                 return; 
             }
-            long memoryUsed = currentProcess.WorkingSet64 / 1024 / 1024;
+            var memoryUsed = currentProcess.WorkingSet64 / (1024 * 1024);
             stopwatch.Stop();
-            TimeSpan timeSpan = stopwatch.Elapsed;
-            string effic = _calc.Efficiency().ToString(CultureInfo.CurrentCulture);
-            string tem = Math.Round(_temperature![^1], 2).ToString(CultureInfo.CurrentCulture);
-            string vis = Math.Round(_viscosity![^1], 2).ToString(CultureInfo.CurrentCulture);
-            var windowPlot = new WindowPlot(_zCoord, _temperature, _viscosity, effic, tem, vis, timeSpan, memoryUsed);
+            var timeSpan = stopwatch.Elapsed;
+            var efficiency = _calc.Efficiency().ToString(CultureInfo.CurrentCulture);
+            var tem = Math.Round(_temperature![^1], 2).ToString(CultureInfo.CurrentCulture);
+            var vis = Math.Round(_viscosity![^1], 2).ToString(CultureInfo.CurrentCulture);
+            var windowPlot = new WindowPlot(_zCoord, _temperature, _viscosity, efficiency, tem, vis, timeSpan, memoryUsed);
             windowPlot.Show();
         }
 
@@ -211,7 +211,7 @@ namespace Don_tKnowHowToNameThis {
             }
             // TODO: убрать материал из эксельворкера отстальвить только calc
             var fileName = sfd.FileName;
-            fileName = fileName.Contains(".xlsx") ? fileName : fileName + ".xlsx";
+            fileName = fileName.EndsWith(".xlsx") ? fileName : fileName + ".xlsx";
             ExcelWorker excelWorker = new(_zCoord, _temperature, _viscosity, _q, fileName, _currentMaterial, _calc);
             excelWorker.SaveToExel();
         }
@@ -219,6 +219,11 @@ namespace Don_tKnowHowToNameThis {
         private void MaterialComboBox_DropDownClosed(object? sender, EventArgs e) {
             InitialMaterials();
             SetStartMaterialField();
+        }
+
+        private void ChangeUser_Click(object sender, RoutedEventArgs e) {
+            new LoginWindow().Show();
+            Close();
         }
     }
 }

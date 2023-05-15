@@ -27,6 +27,7 @@ public partial class LoginWindow {
                 break;
             case "user":
                 new MainWindow().Show();
+                Close();
                 break;
         }
         

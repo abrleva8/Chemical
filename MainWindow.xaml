@@ -22,6 +22,7 @@
         </Grid.ColumnDefinitions>
         <Menu Grid.Row="0" Grid.ColumnSpan="3" Margin="0,0,121,0">
             <MenuItem Header="Файл" Height="25px">
+                <MenuItem Name="returnToLogin" Header="Сменить пользователя" Click="ChangeUser_Click" IsEnabled="True"/>
                 <MenuItem Name="excelSaveItem" Header="Сохранить в Excel" Click="SaveExcel_Click" IsEnabled="False"/>
             </MenuItem>
 
