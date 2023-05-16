@@ -31,6 +31,33 @@ public class DataBaseWorker {
         
         return result;
     }
+
+    public record MaterialInfo(
+        string materialType,
+        double value,
+        string unit
+    );
+    public static List<MaterialInfo> GetMaterialsInfo() {
+        
+
+        const string query = "SELECT Тип, Величина as \"Плотность\", Единица_измерения " +
+                             "FROM материал " +
+                             "JOIN параметры_свойств_материала псм on материал.ID_материала = псм.ID_материала " +
+                             "JOIN параметры п on псм.ID_Параметра = п.ID_Параметра " +
+                             "WHERE Название_параметра = \"Плотность\"";
+        using var connection = JoinBase();
+        var command = new MySqlCommand();
+        command.Connection = connection;
+        command.CommandText = query;
+        var reader = command.ExecuteReader();
+        var result = new List<MaterialInfo>();
+        while (reader.Read()) {
+            result.Add(new (reader.GetString(0),reader.GetDouble(1), reader.GetString(2)));
+        }
+        connection.Close();
+        
+        return result;
+    }
     
     public static Dictionary<string, string> GetMaterialsValues(string selectedMaterial) {
 

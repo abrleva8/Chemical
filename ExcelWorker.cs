@@ -46,7 +46,7 @@ namespace Don_tKnowHowToNameThis {
 
             var r = rowAndColumn;
             const int c = rowAndColumn + 5;
-            // TODO: поле тип материала взять из интерфейса
+            
             Dictionary<string, object> inputData = new()
             {
                 { "Входные данные",                                                     "" },
