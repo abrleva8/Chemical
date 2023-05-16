@@ -7,10 +7,14 @@
         mc:Ignorable="d"
         Title="AdminWindow" Height="450" Width="800">
     <Grid>
-        <DataGrid Name="MaterialsDataGrid">
-            <!-- <DataGrid.Columns> -->
-            <!--     <DataGridTextColumn Header="Материал" /> -->
-            <!-- </DataGrid.Columns> -->
+        <ComboBox HorizontalAlignment="Left" Margin="39,27,0,0" VerticalAlignment="Top" Width="120" SelectedIndex="0">
+            <TextBlock>Плотность</TextBlock>
+            <TextBlock>Удельная теплоеёмкость</TextBlock>
+            <TextBlock>Температура плавления</TextBlock>
+        </ComboBox>
+        <DataGrid Name="MaterialsDataGrid" Margin="0,150,0,0">
+            
         </DataGrid>
+        
     </Grid>
 </Window>
