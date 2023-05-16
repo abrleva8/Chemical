@@ -37,14 +37,13 @@ public class DataBaseWorker {
         double value,
         string unit
     );
-    public static List<MaterialInfo> GetMaterialsInfo() {
+    public static List<MaterialInfo> GetMaterialsInfo(string parameter) {
         
-
-        const string query = "SELECT Тип, Величина as \"Плотность\", Единица_измерения " +
-                             "FROM материал " +
-                             "JOIN параметры_свойств_материала псм on материал.ID_материала = псм.ID_материала " +
-                             "JOIN параметры п on псм.ID_Параметра = п.ID_Параметра " +
-                             "WHERE Название_параметра = \"Плотность\"";
+        string query = $"SELECT Тип, Величина as `{parameter}`, Единица_измерения " +
+                     "FROM материал " +
+                     "JOIN параметры_свойств_материала псм on материал.ID_материала = псм.ID_материала " +
+                     "JOIN параметры п on псм.ID_Параметра = п.ID_Параметра " +
+                     $"WHERE Название_параметра = \"{parameter}\"";
         using var connection = JoinBase();
         var command = new MySqlCommand();
         command.Connection = connection;

@@ -19,20 +19,24 @@ namespace Don_tKnowHowToNameThis {
     public partial class AdminWindow : Window {
         public AdminWindow() {
             InitializeComponent();
-            GetMaterialsFromBd();
         }
 
-        private void GetMaterialsFromBd() {
-            var materialsInfo = DataBaseWorker.GetMaterialsInfo();
+        private void GetMaterialsFromBd(string parameter) {
+            var materialsInfo = DataBaseWorker.GetMaterialsInfo(parameter);
             
+            MaterialsDataGrid.Columns.Clear();
+            MaterialsDataGrid.Items.Clear();
+            MaterialsDataGrid.ItemsSource = null;
+
             var column = new DataGridTextColumn {
                 Header = "Тип материала",
                 Binding = new Binding("materialType")
             };
+            
             MaterialsDataGrid.Columns.Add(column);
  
             column = new()  {
-                Header = "Плотность",
+                Header = parameter,
                 Binding = new Binding("value")
             };
             MaterialsDataGrid.Columns.Add(column);
@@ -42,8 +46,6 @@ namespace Don_tKnowHowToNameThis {
                 Binding = new Binding("unit")
             };
             MaterialsDataGrid.Columns.Add(column);
-            
-            
             
             foreach (var material in materialsInfo) {
                     MaterialsDataGrid.Items.Add(new DataBaseWorker.MaterialInfo(material.materialType, material.value, material.unit));
@@ -74,5 +76,16 @@ namespace Don_tKnowHowToNameThis {
         //     }
         //     // MaterialsDataGrid.ItemsSource = 
         // }
+        private void ParameterComboBox_OnSelectionChanged(object sender, SelectionChangedEventArgs e) {
+            var currentItem = ParameterComboBox.SelectedItem as TextBlock;
+            var current = currentItem.Text;
+            if (current != "") {
+                GetMaterialsFromBd(current);
+            }
+        }
+
+        private void ParameterComboBox_OnDropDownClosed(object? sender, EventArgs e) {
+           // GetMaterialsFromBd(ParameterComboBox.Text);
+        }
     }
 }
