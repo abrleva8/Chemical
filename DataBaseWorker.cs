@@ -17,7 +17,7 @@ public class DataBaseWorker {
 
     public static List<string> GetMaterials() {
 
-        const string query = "select `Тип` from `материал`";
+        const string query = "SELECT type FROM material";
         using var connection = JoinBase();
         var command = new MySqlCommand();
         command.Connection = connection;
@@ -37,13 +37,14 @@ public class DataBaseWorker {
         double value,
         string unit
     );
+    
     public static List<MaterialInfo> GetMaterialsInfo(string parameter) {
         
-        string query = $"SELECT Тип, Величина as `{parameter}`, Единица_измерения " +
-                     "FROM материал " +
-                     "JOIN параметры_свойств_материала псм on материал.ID_материала = псм.ID_материала " +
-                     "JOIN параметры п on псм.ID_Параметра = п.ID_Параметра " +
-                     $"WHERE Название_параметра = \"{parameter}\"";
+        string query = $"SELECT type, value as `{parameter}`, unit " +
+                     "FROM material " +
+                     "JOIN parameter_material_attr pma on material.ID_material = pma.ID_material " +
+                     "JOIN parameter p ON pma.ID_parameter = p.ID_parameter " +
+                     $"WHERE name = \"{parameter}\"";
         using var connection = JoinBase();
         var command = new MySqlCommand();
         command.Connection = connection;
@@ -60,12 +61,12 @@ public class DataBaseWorker {
     
     public static Dictionary<string, string> GetMaterialsValues(string selectedMaterial) {
 
-        const string query = "select `Название_параметра`, `Величина`" +
-                             "from `материал`" +
-                             "join `параметры_свойств_материала` t on t.`ID_материала` = `материал`.ID_материала " +
-                             "and t.Тип_параметра = \"Свойство материала\" " +
-                             "and `материал`.Тип = @material " +
-                             "join `параметры` p on p.ID_Параметра = t.ID_Параметра";
+        const string query = "select name, value " +
+                             "from material " +
+                             "join parameter_material_attr pma on pma.ID_material = material.ID_material " +
+                             "and pma.type = \"Свойство материала\" " +
+                             "and material.type = @material " +
+                             "join parameter p on p.ID_parameter = pma.ID_parameter";
         
         using var connection = JoinBase();
         var command = new MySqlCommand();
