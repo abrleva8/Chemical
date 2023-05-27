@@ -48,7 +48,7 @@ namespace Don_tKnowHowToNameThis {
             MaterialsDataGrid.Columns.Add(column);
             
             foreach (var material in materialsInfo) {
-                    MaterialsDataGrid.Items.Add(new DataBaseWorker.MaterialInfo(material.materialType, material.value, material.unit));
+                    MaterialsDataGrid.Items.Add(new DataBaseWorker.MaterialInfo(material.MaterialType, material.Value, material.Unit));
             }
         }
 

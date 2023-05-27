@@ -77,25 +77,32 @@
                     <RowDefinition></RowDefinition>
                     <RowDefinition></RowDefinition>
                 </Grid.RowDefinitions>
-                <Label Grid.Column="0" Grid.Row="0" Content="Плотность:"/>
-                <Label Grid.Column="0" Margin="0,105,0,105" Grid.RowSpan="3">
+                <Label Grid.Column="0" Grid.Row="0">
                     <Label.Content>
-                        <TextBlock TextWrapping="Wrap">
-                            Удельная теплоёмкость:
+                        <TextBlock Name="DensityLabel" TextWrapping="Wrap">
+                            Плотность1:
+                        </TextBlock>
+                    </Label.Content>
+                </Label>
+                
+                <Label Grid.Column="0" Margin="0,105,0,105" Grid.Row="0" Grid.RowSpan="3">
+                    <Label.Content>
+                        <TextBlock Name="SpecificHeatCapacityLabel" TextWrapping="Wrap">
+                            Удельная теплоёмкость1:
                         </TextBlock>
                     </Label.Content>
                 </Label>
                 <Label Grid.Column="0" Grid.Row="2">
                     <Label.Content>
-                        <TextBlock TextWrapping="Wrap">
-                            Температура плавления:
+                        <TextBlock Name="MeltingPointLabel" TextWrapping="Wrap">
+                            Температура плавления1:
                         </TextBlock>
                     </Label.Content>
                 </Label>
                 <Label Grid.Column="2" Grid.Row="0" Name="DensityMeasureLabel" Content="кг*м^3" Grid.ColumnSpan="2"/>
-                <Label Grid.Column="2" Content="Дж/(кг*°С)" Grid.ColumnSpan="2" Margin="0,105,0,105" Grid.RowSpan="3"/>
-                <Label Grid.Column="2" Grid.Row="2" Content="°С" Grid.ColumnSpan="2"/>
-                <TextBox x:Name="p" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" 
+                <Label Name="SpecificHeatCapacityUnitLabel" Grid.Column="2" Content="Дж/(кг*°С)" Grid.ColumnSpan="2" Margin="0,105,0,105" Grid.RowSpan="3"/>
+                <Label Name="MeltingPointUnitLabel" Grid.Column="2" Grid.Row="2" Content="°С" Grid.ColumnSpan="2"/>
+                <TextBox x:Name="P" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" 
                          Width="{Binding Path=ActualWidth, ElementName=DensityMeasureLabel}" Margin="0,5,0,0" TextChanged="CheckInputChange"/>
                 <TextBox x:Name="c" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" 
                          Width="{Binding Path=ActualWidth, ElementName=DensityMeasureLabel}" Margin="0,5,0,0" TextChanged="CheckInputChange"/>
@@ -182,43 +189,45 @@
                 </Grid.RowDefinitions>
                 <Label Grid.Column="0" VerticalAlignment="Center" Grid.ColumnSpan="2" Height="42">
                     <Label.Content>
-                        <TextBlock TextWrapping="Wrap" Width="169">
+                        <TextBlock Name="C1Label" TextWrapping="Wrap" Width="169">
                             Коэффициент консистенции при температуре приведения:
                         </TextBlock>
                     </Label.Content>
                 </Label>
                 <Label Grid.Column="0" VerticalAlignment="Center" Grid.ColumnSpan="2" Grid.Row="1" Height="42">
                     <Label.Content>
-                        <TextBlock TextWrapping="Wrap">
+                        <TextBlock Name="C2Label" TextWrapping="Wrap">
                             Энергия активации вязкого течения материала:
                         </TextBlock>
                     </Label.Content>
                 </Label>
                 <Label Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" Grid.ColumnSpan="2" Height="26">
                     <Label.Content>
-                        <TextBlock TextWrapping="Wrap">
+                        <TextBlock Name="C3Label" TextWrapping="Wrap">
                             Температура приведения:
                         </TextBlock>
                     </Label.Content>
                 </Label>
                 <Label Grid.Column="0" Grid.Row="3" Margin="0,15,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="26">
                     <Label.Content>
-                        <TextBlock TextWrapping="Wrap">
+                        <TextBlock Name="C4Label" TextWrapping="Wrap">
                             Индекс течения:
                         </TextBlock>
                     </Label.Content>
                 </Label>
                 <Label Grid.Column="0" Grid.Row="4" VerticalAlignment="Center" Grid.ColumnSpan="2" Height="42">
                     <Label.Content>
-                        <TextBlock TextWrapping="Wrap">
+                        <TextBlock Name="C5Label" TextWrapping="Wrap">
                             Коэффициент теплоотдачи от крышки:
                         </TextBlock>
                     </Label.Content>
                 </Label>
-                <Label Grid.Column="2" Content="Па*с^n" VerticalAlignment="Center" Grid.ColumnSpan="2" Height="26" Margin="126,0,0,0"/>
-                <Label Grid.Column="2" Content="Дж/моль" VerticalAlignment="Center" Grid.Row="1" Grid.ColumnSpan="2" Height="26" Margin="126,0,0,0"/>
-                <Label Grid.Column="2" Grid.Row="2" Content="°С" VerticalAlignment="Center" Grid.ColumnSpan="2" Height="26" Margin="126,0,0,0"/>
-                <Label Grid.Column="2" Grid.Row="4" Content="Вт/(м^2*°С)" VerticalAlignment="Center" Grid.ColumnSpan="2" Height="26" Margin="126,0,0,0"/>
+                <Label Name="U1Label" Grid.Column="2" Content="Па*с^n" VerticalAlignment="Center" Grid.Row="0"
+                       Grid.ColumnSpan="2" Height="26" Margin="126,0,0,0"/>
+                <Label Name="U2Label" Grid.Column="2" Content="Дж/моль" VerticalAlignment="Center" Grid.Row="1" Grid.ColumnSpan="2" Height="26" Margin="126,0,0,0"/>
+                <Label Name="U3Label" Grid.Column="2" Grid.Row="2" Content="°С" VerticalAlignment="Center" Grid.ColumnSpan="2" Height="26" Margin="126,0,0,0"/>
+                <Label Name="U4Label" Grid.Column="2" Grid.Row="3" Content="" VerticalAlignment="Center" Grid.ColumnSpan="2" Height="26" Margin="126,0,0,0"/>
+                <Label Name="U5Label" Grid.Column="2" Grid.Row="4" Content="Вт/(м^2*°С)" VerticalAlignment="Center" Grid.ColumnSpan="2" Height="26" Margin="126,0,0,0"/>
                 <TextBox x:Name="mu0" Grid.Column="2" Grid.Row="0" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" 
                          Width="84" Margin="0,36,0,0" TextChanged="CheckInputChange" Height="18" />
                 <TextBox x:Name="Ea" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" 

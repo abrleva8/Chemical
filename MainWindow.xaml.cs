@@ -22,8 +22,9 @@ namespace Don_tKnowHowToNameThis {
         public MainWindow() {
             InitializeComponent();
             InitMaterialComboBox();
-            InitialMaterials();
             InitialChannels();
+            InitMaterialInfoPanel();
+            InitCoefficientInfoPanel();
         }
 
         private void InitMaterialComboBox() {
@@ -31,11 +32,6 @@ namespace Don_tKnowHowToNameThis {
             MaterialComboBox.SelectedIndex = 0;
         }
 
-        // TODO: добавить сюда результат работы с бд
-        private void InitialMaterials() {
-            _calc.Material = GetMaterialsFromBd();
-        }
-        
         private void InitialChannels() {
             _calc.Channel = GetChannelFromBd();
         }
@@ -44,26 +40,121 @@ namespace Don_tKnowHowToNameThis {
             return new (0.20, 0.009, 4.5);
         }
 
-        private Material GetMaterialsFromBd() {
-            var materialsValues = DataBaseWorker.GetMaterialsValues(MaterialComboBox.Text);
-            var ro = double.Parse(materialsValues["Плотность"]);
-            var c = double.Parse(materialsValues["Удельная теплоеёмкость"]);
-            var t = double.Parse(materialsValues["Температура плавления"]);
-            var m = new Material(ro, c, t);
-            return m;
+        private void InitMaterialInfoPanel() {
+            
+            var materialsValues = DataBaseWorker.GetMaterialsInfoForLabel(MaterialComboBox.Text);
+            if (materialsValues.Count != 3) {
+                MessageBox.Show("Ошибка! Данные либо мало, либо много! Будут записаны данные по умолчанию");
+                InitDefaultMaterialInfoPanel();
+            } else {
+                InitDataBaseMaterialInfo(materialsValues);
+            }
+        }
+        private void InitCoefficientInfoPanel() {
+            
+            var coefficientsValues = DataBaseWorker.GetCoefficientsInfoForLabel(MaterialComboBox.Text);
+            if (coefficientsValues.Count != 5) {
+                MessageBox.Show("Ошибка! Коэффициенты!");
+                InitDefaultCoefficientsInfoPanel();
+            } else {
+                InitDataBaseCoefficientsInfo(coefficientsValues);
+            }
         }
 
-       
+        private void InitDataBaseMaterialInfo(IReadOnlyList<DataBaseWorker.MaterialInfo> materialsValues) {
+            var firstMaterial = materialsValues[0];
+            var secondMaterial = materialsValues[1];
+            var thirdMaterial = materialsValues[2];
+
+            DensityLabel.Text = firstMaterial.MaterialType;
+            SpecificHeatCapacityLabel.Text = secondMaterial.MaterialType;
+            MeltingPointLabel.Text = thirdMaterial.MaterialType;
+
+            P.Text = firstMaterial.Value.ToString(CultureInfo.CurrentCulture);
+            c.Text = secondMaterial.Value.ToString(CultureInfo.CurrentCulture);
+            T0.Text = thirdMaterial.Value.ToString(CultureInfo.CurrentCulture);
+
+            _calc.Material = new Material(firstMaterial.Value,
+                secondMaterial.Value,
+                thirdMaterial.Value);
+
+            DensityMeasureLabel.Content = firstMaterial.Unit;
+            SpecificHeatCapacityUnitLabel.Content = secondMaterial.Unit;
+            MeltingPointUnitLabel.Content = thirdMaterial.Unit;
+        }
+        private void InitDataBaseCoefficientsInfo(IReadOnlyList<DataBaseWorker.MaterialInfo> materialsValues) {
+            var firstCoefficient = materialsValues[0];
+            var secondCoefficient = materialsValues[1];
+            var thirdCoefficient = materialsValues[2];
+            var fourthCoefficient = materialsValues[3];
+            var fifthCoefficient = materialsValues[4];
+
+            C1Label.Text = firstCoefficient.MaterialType;
+            C2Label.Text = secondCoefficient.MaterialType;
+            C3Label.Text = thirdCoefficient.MaterialType;
+            C4Label.Text = fourthCoefficient.MaterialType;
+            C5Label.Text = fifthCoefficient.MaterialType;
+
+            mu0.Text = firstCoefficient.Value.ToString(CultureInfo.CurrentCulture);
+            Ea.Text = secondCoefficient.Value.ToString(CultureInfo.CurrentCulture);
+            Tr.Text = thirdCoefficient.Value.ToString(CultureInfo.CurrentCulture);
+            n.Text = fourthCoefficient.Value.ToString(CultureInfo.CurrentCulture);
+            alphaU.Text = fifthCoefficient.Value.ToString(CultureInfo.CurrentCulture);
+
+            U1Label.Content = firstCoefficient.Unit;
+            U2Label.Content = secondCoefficient.Unit;
+            U3Label.Content = thirdCoefficient.Unit;
+            U4Label.Content = fourthCoefficient.Unit;
+            U5Label.Content = fifthCoefficient.Unit;
+            
+            //
+            // _calc.Material = new Material(firstMaterial.Value,
+            //     secondMaterial.Value,
+            //     thirdMaterial.Value);
+        }
+
+        private void InitDefaultCoefficientsInfoPanel() {
+
+            C1Label.Text = "Коэффициент консистенции материала при температуре приведения";
+            C2Label.Text = "Энергия активации вязкого течения материала";
+            C3Label.Text = "Температура приведения";
+            C4Label.Text = "Индекс течения материала";
+            C5Label.Text = "Коэффициент теплоотдачи от крышки канала к материалу";
+
+            mu0.Text = "";
+            Ea.Text = "";
+            Tr.Text = "";
+            n.Text = "";
+            alphaU.Text = "";
+            
+            U1Label.Content = "Па*с^n";
+            U2Label.Content = "Дж/моль";
+            U3Label.Content = "°С";
+            U4Label.Content = "";
+            U5Label.Content = "Вт/(м^2*°С)";
+        }
+
+        private void InitDefaultMaterialInfoPanel() {
+            DensityLabel.Text = "Плотность";
+            SpecificHeatCapacityLabel.Text = "Удельная теплоеёмкость";
+            MeltingPointLabel.Text = "Температура плавления";
+            
+            P.Text = "";
+            c.Text = "";
+            T0.Text = "";
+
+            DensityMeasureLabel.Content = "кг/м^3";
+            SpecificHeatCapacityUnitLabel.Content = "Дж/(кг*°C)";
+            MeltingPointUnitLabel.Content = "°C";
+        }
+
+
         private void Window_Loaded(object sender, RoutedEventArgs e) {
             step.Text = _calc.Step.ToString(CultureInfo.CurrentCulture);
             W.Text = _calc.Channel.W.ToString(CultureInfo.CurrentCulture);
             H.Text = _calc.Channel.H.ToString(CultureInfo.CurrentCulture);
             L.Text = _calc.Channel.L.ToString(CultureInfo.CurrentCulture);
-            
-            // TODO: получить из БД
-            SetStartMaterialField();
-            //
-            
+
             Vu.Text = _calc.Vu.ToString(CultureInfo.CurrentCulture);
             Tu.Text = _calc.Tu.ToString(CultureInfo.CurrentCulture);
             mu0.Text = _calc.Mu0.ToString(CultureInfo.CurrentCulture);
@@ -71,12 +162,6 @@ namespace Don_tKnowHowToNameThis {
             Tr.Text = _calc.Tr.ToString(CultureInfo.CurrentCulture);
             n.Text = _calc.N.ToString(CultureInfo.CurrentCulture);
             alphaU.Text = _calc.AlphaU.ToString(CultureInfo.CurrentCulture);
-        }
-
-        private void SetStartMaterialField() {
-            p.Text = _calc.Material.P.ToString(CultureInfo.CurrentCulture);
-            c.Text = _calc.Material.C.ToString(CultureInfo.CurrentCulture);
-            T0.Text = _calc.Material.T0.ToString(CultureInfo.CurrentCulture);
         }
 
 
@@ -121,7 +206,7 @@ namespace Don_tKnowHowToNameThis {
                 isGoodData = false;
             if (!IsGood(_calc.StepMin, _calc.StepMax, step))
                 isGoodData = false;
-            if (!IsGood(_calc.PMin, _calc.PMax, p))
+            if (!IsGood(_calc.PMin, _calc.PMax, P))
                 isGoodData = false;
             if (!IsGood(_calc.CMin, _calc.CMax, c))
                 isGoodData = false;
@@ -148,7 +233,7 @@ namespace Don_tKnowHowToNameThis {
             
             if (!isGoodData) return false;
 
-            var material = new Material(Convert.ToDouble(p.Text), Convert.ToDouble(c.Text), Convert.ToDouble(T0.Text));
+            var material = new Material(Convert.ToDouble(P.Text), Convert.ToDouble(c.Text), Convert.ToDouble(T0.Text));
             var channel = new Channel(Convert.ToDouble(W.Text), Convert.ToDouble(H.Text), Convert.ToDouble(L.Text));
             
             _calc = new(channel, Convert.ToDouble(step.Text), material, Convert.ToDouble(Vu.Text), Convert.ToDouble(Tu.Text), Convert.ToDouble(mu0.Text), Convert.ToDouble(Ea.Text), Convert.ToDouble(Tr.Text),
@@ -217,8 +302,9 @@ namespace Don_tKnowHowToNameThis {
         }
 
         private void MaterialComboBox_DropDownClosed(object? sender, EventArgs e) {
-            InitialMaterials();
-            SetStartMaterialField();
+           // InitialMaterials();
+           InitMaterialInfoPanel();
+           InitCoefficientInfoPanel();
         }
 
         private void ChangeUser_Click(object sender, RoutedEventArgs e) {
