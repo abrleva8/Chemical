@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
 C:\Users\abrle\source\repos\Chemical\App.xaml
-9-1744126057
+12974833078
 
-21-517036686
+24-817704060
 223736059977
-AddUserWindow.xaml;AdminWindow.xaml;ChangePasswordWindow.xaml;DeleteMaterialWindow.xaml;DeleteUserWindow.xaml;LoginWindow.xaml;MainWindow.xaml;Table.xaml;WindowPlot.xaml;
+AddMaterialWindow.xaml;AddUserWindow.xaml;AdminWindow.xaml;ChangeParameterWindow.xaml;ChangePasswordWindow.xaml;DeleteMaterialWindow.xaml;DeleteParameterWindow.xaml;DeleteUserWindow.xaml;LoginWindow.xaml;MainWindow.xaml;Table.xaml;WindowPlot.xaml;
 
 True
 
