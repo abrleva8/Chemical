@@ -106,11 +106,6 @@ namespace Don_tKnowHowToNameThis {
             U3Label.Content = thirdCoefficient.Unit;
             U4Label.Content = fourthCoefficient.Unit;
             U5Label.Content = fifthCoefficient.Unit;
-            
-            //
-            // _calc.Material = new Material(firstMaterial.Value,
-            //     secondMaterial.Value,
-            //     thirdMaterial.Value);
         }
 
         private void InitDefaultCoefficientsInfoPanel() {
@@ -169,14 +164,10 @@ namespace Don_tKnowHowToNameThis {
             if (! CalculateLists()) return;
             var table = new Table(_zCoord, _temperature, _viscosity);
             table.Show();
-            //eff.Content = _calc.Efficiency().ToString(CultureInfo.CurrentCulture);
-            //T.Content = Math.Round(_temperature![^1], 2).ToString(CultureInfo.CurrentCulture);
-            //visc.Content = Math.Round(_viscosity![^1], 2).ToString(CultureInfo.CurrentCulture);
 
             _currentMaterial = MaterialComboBox.Text!;
             
             menuItemPlot.IsEnabled = true;
-            
             excelSaveItem.IsEnabled = true;
         }
 
