@@ -158,3 +158,5 @@ C:\Users\abrle\Source\Repos\Chemical\obj\Debug\net6.0-windows\ChangePasswordWind
 C:\Users\abrle\Source\Repos\Chemical\obj\Debug\net6.0-windows\ChangePasswordWindow.baml
 C:\Users\abrle\Source\Repos\Chemical\obj\Debug\net6.0-windows\DeleteUserWindow.g.cs
 C:\Users\abrle\Source\Repos\Chemical\obj\Debug\net6.0-windows\DeleteUserWindow.baml
+C:\Users\abrle\source\repos\Chemical\obj\Debug\net6.0-windows\DeleteMaterialWindow.g.cs
+C:\Users\abrle\source\repos\Chemical\obj\Debug\net6.0-windows\DeleteMaterialWindow.baml

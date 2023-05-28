@@ -78,5 +78,22 @@ namespace Don_tKnowHowToNameThis {
             var deleteUserWindow = new DeleteUserWindow();
             deleteUserWindow.ShowDialog();
         }
+
+        private void ChangeUser_Click(object sender, RoutedEventArgs e) {
+            new LoginWindow().Show();
+            Close();
+        }
+
+        private void AddMaterialButton_Click(object sender, RoutedEventArgs e) {
+
+        }
+
+        private void ChangeMaterialButton_Click(object sender, RoutedEventArgs e) {
+
+        }
+
+        private void DeleteMaterialButton_Click(object sender, RoutedEventArgs e) {
+            new DeleteMaterialWindow().Show();
+        }
     }
 }

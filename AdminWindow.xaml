@@ -5,57 +5,59 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Don_tKnowHowToNameThis"
         mc:Ignorable="d"
-        Title="AdminWindow" Height="450" Width="800">
-    <TabControl>
-        <TabItem Name="loginTab">
-            <TabItem.Header>
-                <StackPanel Orientation="Horizontal">
-                    <Ellipse Height="10" Width="10" Fill="Black" />
-                    <TextBlock Margin="3">Логин</TextBlock>
-                </StackPanel>
-            </TabItem.Header>
-            <Grid>
-                <Button Name="AddUserButton" Height="30" Width="145" Margin="10,10,0,0"
-                    VerticalAlignment="Top" HorizontalAlignment="Left" Click="AddUserButton_Click">Добавить пользователя
-                </Button>
+        Title="AdminWindow" Height="235" Width="252">
+    <Grid>
+        <Menu Grid.Row="0" Grid.ColumnSpan="3" Margin="0,0,121,0">
+            <MenuItem Header="Файл" Height="25px">
+                <MenuItem Name="returnToLogin" Header="Сменить пользователя" Click="ChangeUser_Click" IsEnabled="True"/>
+            </MenuItem>
+        </Menu>
+        <TabControl Margin="0,30,0,0">
+            <TabItem Name="loginTab">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Ellipse Height="10" Width="10" Fill="Black" />
+                        <TextBlock Margin="3">Логин</TextBlock>
+                    </StackPanel>
+                </TabItem.Header>
+                <Grid>
+                    <Button Name="AddUserButton" Height="30" Width="146" Margin="0,10,0,0"
+                    VerticalAlignment="Top" HorizontalAlignment="Center" Click="AddUserButton_Click">Добавить пользователя
+                    </Button>
 
-                <Button Name="ChangePasswordButton" Height="30" Width="145" Margin="10,50,0,0"
-                    VerticalAlignment="Top" HorizontalAlignment="Left" Click="ChangePasswordButton_Click">Изменить пароль
-                </Button>
+                    <Button Name="ChangePasswordButton" Height="30" Width="145" Margin="0,55,0,0"
+                    VerticalAlignment="Top" HorizontalAlignment="Center" Click="ChangePasswordButton_Click">Изменить пароль
+                    </Button>
 
-                <Button Name="DeleteUserButton" Height="30" Width="145" Margin="10,90,0,0"
-                    VerticalAlignment="Top" HorizontalAlignment="Left" Click="DeleteUserButton_Click">Удалить пользователя
-                </Button>
+                    <Button Name="DeleteUserButton" Height="30" Width="145" Margin="0,100,0,0"
+                    VerticalAlignment="Top" HorizontalAlignment="Center" Click="DeleteUserButton_Click">Удалить пользователя
+                    </Button>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="productTab">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle Height="10" Width="10" Fill="Black" />
+                        <TextBlock Margin="3">Материалы</TextBlock>
+                    </StackPanel>
+                </TabItem.Header>
+                <Grid>
+                    <Grid>
+                        <Button Name="AddMaterialButton" Height="30" Width="146" Margin="0,10,0,0"
+                    VerticalAlignment="Top" HorizontalAlignment="Center" Click="AddMaterialButton_Click">Добавить материал
+                        </Button>
 
+                        <Button Name="ChangeMaterialButton" Height="30" Width="145" Margin="0,55,0,0"
+                    VerticalAlignment="Top" HorizontalAlignment="Center" Click="ChangeMaterialButton_Click">Изменить материал
+                        </Button>
 
+                        <Button Name="DeleteMaterialButton" Height="30" Width="145" Margin="0,100,0,0"
+                    VerticalAlignment="Top" HorizontalAlignment="Center" Click="DeleteMaterialButton_Click">Удалить материал
+                        </Button>
+                    </Grid>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
 
-            </Grid>
-            
-
-
-
-        </TabItem>
-        <TabItem x:Name="productTab">
-            <TabItem.Header>
-                <StackPanel Orientation="Horizontal">
-                    <Rectangle Height="10" Width="10" Fill="Black" />
-                    <TextBlock Margin="3">Материалы</TextBlock>
-                </StackPanel>
-            </TabItem.Header>
-            <Grid>
-                <DataGrid Name="MaterialsDataGrid" Margin="0,150,0,0">
-
-                </DataGrid>
-                <ComboBox Name="ParameterComboBox" HorizontalAlignment="Left" Margin="39,27,0,0" VerticalAlignment="Top" Width="120" SelectedIndex="0"
-                  SelectionChanged="ParameterComboBox_OnSelectionChanged" DropDownClosed="ParameterComboBox_OnDropDownClosed">
-                    <TextBlock>Плотность</TextBlock>
-                    <TextBlock>Удельная теплоеёмкость</TextBlock>
-                    <TextBlock>Температура плавления</TextBlock>
-                </ComboBox>
-
-
-            </Grid>
-        </TabItem>
-    </TabControl>
-    
 </Window>

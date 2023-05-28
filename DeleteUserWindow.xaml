@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Don_tKnowHowToNameThis"
         mc:Ignorable="d"
-        Title="DeleteUserWindow" Height="236" Width="304">
+        Title="DeleteUserWindow" Height="197" Width="304">
     <Grid>
 
         <StackPanel Margin="5">
