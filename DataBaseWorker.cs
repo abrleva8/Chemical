@@ -31,6 +31,33 @@ public class DataBaseWorker {
         
         return result;
     }
+    
+    public static void DeleteMaterial(string materialType) {
+
+        var query = $"DELETE FROM material WHERE type = \"{materialType}\";";
+        using var connection = JoinBase();
+        var command = new MySqlCommand();
+        command.Connection = connection;
+        command.CommandText = query;
+        command.ExecuteReader();
+        connection.Close();
+    }
+    
+    public static void DeleteMaterialInfo(string materialType) {
+
+        var query = "DELETE " +
+                    "FROM parameter_material_attr " +
+                    "WHERE ID_material = (" +
+                    "SELECT ID_material " +
+                    "FROM material " +
+                    $"WHERE type = \"{materialType}\");";
+        using var connection = JoinBase();
+        var command = new MySqlCommand();
+        command.Connection = connection;
+        command.CommandText = query;
+        command.ExecuteReader();
+        connection.Close();
+    }
 
     public record MaterialInfo(
         string MaterialType,
@@ -81,11 +108,11 @@ public class DataBaseWorker {
     }
     public static List<MaterialInfo> GetCoefficientsInfoForLabel(string materialName) {
         
-        string query = "SELECT name, value, unit " +
-                       "FROM material " +
-                       "JOIN parameter_material_attr pma on material.ID_material = pma.ID_material " +
-                       "JOIN parameter p on pma.ID_parameter = p.ID_parameter " +
-                       $"WHERE material.type = \"{materialName}\" and pma.type = \"Коэффициент\"";
+        var query = "SELECT name, value, unit " +
+                    "FROM material " +
+                    "JOIN parameter_material_attr pma on material.ID_material = pma.ID_material " +
+                    "JOIN parameter p on pma.ID_parameter = p.ID_parameter " +
+                    $"WHERE material.type = \"{materialName}\" and pma.type = \"Коэффициент\"";
         using var connection = JoinBase();
         var command = new MySqlCommand();
         command.Connection = connection;
@@ -95,7 +122,7 @@ public class DataBaseWorker {
         while (reader.Read()) {
             var first = reader.GetString(0);
             var second = reader.GetDouble(1);
-            bool isNull = reader.IsDBNull(2);
+            var isNull = reader.IsDBNull(2);
             var third = isNull ? "" : reader.GetString(2);
             result.Add(new (first, second, third));
         }

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Don_tKnowHowToNameThis"
         mc:Ignorable="d"
-        Title="AdminWindow" Height="235" Width="252">
+        Title="AdminWindow" Height="235" Width="280">
     <Grid>
         <Menu Grid.Row="0" Grid.ColumnSpan="3" Margin="0,0,121,0">
             <MenuItem Header="Файл" Height="25px">
@@ -34,7 +34,7 @@
                     </Button>
                 </Grid>
             </TabItem>
-            <TabItem x:Name="productTab">
+            <TabItem x:Name="MaterialTab">
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal">
                         <Rectangle Height="10" Width="10" Fill="Black" />
@@ -55,6 +55,27 @@
                     VerticalAlignment="Top" HorizontalAlignment="Center" Click="DeleteMaterialButton_Click">Удалить материал
                         </Button>
                     </Grid>
+                </Grid>
+            </TabItem>
+            <TabItem Name="ParameterTab">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Polygon Fill="Black" Points="5, 15, 15, 5, 25, 15"/>
+                        <TextBlock Margin="3">Параметры</TextBlock>
+                    </StackPanel>
+                </TabItem.Header>
+                <Grid>
+                    <Button Name="AddParameterButton" Height="30" Width="146" Margin="0,10,0,0"
+                            VerticalAlignment="Top" HorizontalAlignment="Center">Добавить параметр
+                    </Button>
+
+                    <Button Name="ChangeParameterButton" Height="30" Width="145" Margin="0,55,0,0"
+                            VerticalAlignment="Top" HorizontalAlignment="Center">Изменить параметр
+                    </Button>
+
+                    <Button Name="DeleteParameterButton" Height="30" Width="145" Margin="0,100,0,0"
+                            VerticalAlignment="Top" HorizontalAlignment="Center">Удалить параметр
+                    </Button>
                 </Grid>
             </TabItem>
         </TabControl>

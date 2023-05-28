@@ -13,7 +13,7 @@
 
             <Label Content="Тип материала" Target="{Binding ElementName=LoginTextBox}" />
             <ComboBox Name="LoginToDeleteTextBox"/>
-            <Button Margin="20 20" Width="110" Click="Button_Click">Удалить</Button>
+            <Button Margin="20 20" Width="110" Click="DeleteMaterialButton_Click">Удалить</Button>
         </StackPanel>
 
     </Grid>

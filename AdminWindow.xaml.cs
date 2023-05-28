@@ -93,7 +93,7 @@ namespace Don_tKnowHowToNameThis {
         }
 
         private void DeleteMaterialButton_Click(object sender, RoutedEventArgs e) {
-            new DeleteMaterialWindow().Show();
+            new DeleteMaterialWindow().ShowDialog();
         }
     }
 }

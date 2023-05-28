@@ -24,12 +24,17 @@ namespace Don_tKnowHowToNameThis
         }
 
         private void InitMaterialComboBox() {
+            LoginToDeleteTextBox.Items.Clear();
             DataBaseWorker.GetMaterials().ForEach(material => LoginToDeleteTextBox.Items.Add(material));
             LoginToDeleteTextBox.SelectedIndex = 0;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e) {
-
+        private void DeleteMaterialButton_Click(object sender, RoutedEventArgs e) {
+            var materialType = LoginToDeleteTextBox.Text;
+            DataBaseWorker.DeleteMaterialInfo(materialType);
+            DataBaseWorker.DeleteMaterial(materialType);
+            InitMaterialComboBox();
+            MessageBox.Show("Удаление прошло успешно!");
         }
     }
 }
