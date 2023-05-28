@@ -63,5 +63,19 @@ namespace Don_tKnowHowToNameThis {
         private void ParameterComboBox_OnDropDownClosed(object? sender, EventArgs e) {
            // GetMaterialsFromBd(ParameterComboBox.Text);
         }
+
+        private void AddUserButton_Click(object sender, RoutedEventArgs e) {
+            var addUserWindow = new AddUserWindow();
+            addUserWindow.ShowDialog();
+        }
+
+        private void ChangePasswordButton_Click(object sender, RoutedEventArgs e) {
+            var changePasswordWindow = new ChangePasswordWindow();
+            changePasswordWindow.ShowDialog();
+        }
+
+        private void DeleteUserButton_Click(object sender, RoutedEventArgs e) {
+
+        }
     }
 }

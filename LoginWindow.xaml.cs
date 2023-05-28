@@ -26,7 +26,7 @@ public partial class LoginWindow {
             case "admin":
                 new AdminWindow().Show();
                 break;
-            case "user":
+            default:
                 new MainWindow().Show();
                 Close();
                 break;

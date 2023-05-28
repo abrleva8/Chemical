@@ -152,3 +152,7 @@ C:\Users\abrle\Source\Repos\Chemical\obj\Debug\net6.0-windows\AdminWindow.g.cs
 C:\Users\abrle\Source\Repos\Chemical\obj\Debug\net6.0-windows\AdminWindow.baml
 C:\Users\abrle\RiderProjects\Chemical\obj\Debug\net6.0-windows\AdminWindow.g.cs
 C:\Users\abrle\RiderProjects\Chemical\obj\Debug\net6.0-windows\AdminWindow.baml
+C:\Users\abrle\Source\Repos\Chemical\obj\Debug\net6.0-windows\AddUserWindow.g.cs
+C:\Users\abrle\Source\Repos\Chemical\obj\Debug\net6.0-windows\AddUserWindow.baml
+C:\Users\abrle\Source\Repos\Chemical\obj\Debug\net6.0-windows\ChangePasswordWindow.g.cs
+C:\Users\abrle\Source\Repos\Chemical\obj\Debug\net6.0-windows\ChangePasswordWindow.baml

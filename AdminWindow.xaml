@@ -6,17 +6,56 @@
         xmlns:local="clr-namespace:Don_tKnowHowToNameThis"
         mc:Ignorable="d"
         Title="AdminWindow" Height="450" Width="800">
-    <Grid>
-        <DataGrid Name="MaterialsDataGrid" Margin="0,150,0,0">
+    <TabControl>
+        <TabItem Name="loginTab">
+            <TabItem.Header>
+                <StackPanel Orientation="Horizontal">
+                    <Ellipse Height="10" Width="10" Fill="Black" />
+                    <TextBlock Margin="3">Логин</TextBlock>
+                </StackPanel>
+            </TabItem.Header>
+            <Grid>
+                <Button Name="AddUserButton" Height="30" Width="145" Margin="10,10,0,0"
+                    VerticalAlignment="Top" HorizontalAlignment="Left" Click="AddUserButton_Click">Добавить пользователя
+                </Button>
+
+                <Button Name="ChangePasswordButton" Height="30" Width="145" Margin="10,50,0,0"
+                    VerticalAlignment="Top" HorizontalAlignment="Left" Click="ChangePasswordButton_Click">Изменить пароль
+                </Button>
+
+                <Button Name="DeleteUserButton" Height="30" Width="145" Margin="10,90,0,0"
+                    VerticalAlignment="Top" HorizontalAlignment="Left" Click="DeleteUserButton_Click">Удалить пользователя
+                </Button>
+
+
+
+            </Grid>
             
-        </DataGrid>
-        <ComboBox Name="ParameterComboBox" HorizontalAlignment="Left" Margin="39,27,0,0" VerticalAlignment="Top" Width="120" SelectedIndex="0"
+
+
+
+        </TabItem>
+        <TabItem x:Name="productTab">
+            <TabItem.Header>
+                <StackPanel Orientation="Horizontal">
+                    <Rectangle Height="10" Width="10" Fill="Black" />
+                    <TextBlock Margin="3">Материалы</TextBlock>
+                </StackPanel>
+            </TabItem.Header>
+            <Grid>
+                <DataGrid Name="MaterialsDataGrid" Margin="0,150,0,0">
+
+                </DataGrid>
+                <ComboBox Name="ParameterComboBox" HorizontalAlignment="Left" Margin="39,27,0,0" VerticalAlignment="Top" Width="120" SelectedIndex="0"
                   SelectionChanged="ParameterComboBox_OnSelectionChanged" DropDownClosed="ParameterComboBox_OnDropDownClosed">
-            <TextBlock>Плотность</TextBlock>
-            <TextBlock>Удельная теплоеёмкость</TextBlock>
-            <TextBlock>Температура плавления</TextBlock>
-        </ComboBox>
-        
-        
-    </Grid>
+                    <TextBlock>Плотность</TextBlock>
+                    <TextBlock>Удельная теплоеёмкость</TextBlock>
+                    <TextBlock>Температура плавления</TextBlock>
+                </ComboBox>
+
+
+            </Grid>
+        </TabItem>
+    </TabControl>
+    
 </Window>
