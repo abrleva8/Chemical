@@ -75,7 +75,8 @@ namespace Don_tKnowHowToNameThis {
         }
 
         private void DeleteUserButton_Click(object sender, RoutedEventArgs e) {
-
+            var deleteUserWindow = new DeleteUserWindow();
+            deleteUserWindow.ShowDialog();
         }
     }
 }
