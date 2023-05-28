@@ -7,16 +7,25 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="AddMaterialWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="AddUserWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="AdminWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="ChangeParameterWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="ChangePasswordWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="DeleteMaterialWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="DeleteParameterWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="DeleteUserWindow.xaml.cs">
@@ -30,16 +39,25 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="AddMaterialWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="AddUserWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="AdminWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="ChangeParameterWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="ChangePasswordWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="DeleteMaterialWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="DeleteParameterWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="DeleteUserWindow.xaml">

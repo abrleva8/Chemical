@@ -5,8 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Don_tKnowHowToNameThis"
         mc:Ignorable="d"
-        Title="AddMaterialWindow" Height="450" Width="800">
+        Title="AddMaterialWindow" Height="231" Width="265">
     <Grid>
-        
+
+        <StackPanel Margin="5">
+            <Label Content="Добавление параметра" HorizontalContentAlignment="Center"/>
+
+            <Label Content="Название параметра" Target="{Binding ElementName=AddNameTextBox}" />
+            <TextBox Name="AddNameTextBox" />
+
+            <Label Content="Символ" Target="{Binding ElementName=AddSymbolTextBox}" />
+            <TextBox Name="AddSymbolTextBox"/>
+
+            <Label Content="Условное обозначение" Target="{Binding ElementName=AddUnitTextBox}" />
+            <TextBox Name="AddUnitTextBox"/>
+
+            <Button Margin="20 20" Width="110">Добавить</Button>
+
+        </StackPanel>
+
     </Grid>
 </Window>
