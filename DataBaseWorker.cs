@@ -13,6 +13,13 @@ public abstract class DataBaseWorker {
         string Symbol,
         string Unit
     );
+    
+    public record ParameterInfoWithId(
+        int Id,
+        string Name,
+        string Symbol,
+        string Unit
+    );
 
     private static MySqlConnection JoinBase() {
         var connection = new MySqlConnection();
@@ -92,6 +99,28 @@ public abstract class DataBaseWorker {
         var result = new List<string>();
         while (reader.Read()) {
             result.Add(reader.GetString(0));
+        }
+        connection.Close();
+        
+        return result;
+    }
+    
+    public static List<ParameterInfoWithId> GetParameterTable() {
+
+        const string query = "SELECT ID_parameter AS \"ИД\", " +
+                             "name AS \"Название\", " +
+                             "symbol AS \"Условное_обозначение\", " +
+                             "unit AS \"Единица_измерения\" " +
+                             "FROM parameter;";
+        using var connection = JoinBase();
+        var command = new MySqlCommand();
+        command.Connection = connection;
+        command.CommandText = query;
+        var reader = command.ExecuteReader();
+        var result = new List<ParameterInfoWithId>();
+        while (reader.Read()) {
+            result.Add(new (reader.GetInt32(0), reader.GetString(1),
+                                reader.GetString(2), reader.GetString(3)));
         }
         connection.Close();
         

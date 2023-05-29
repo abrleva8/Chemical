@@ -6,14 +6,15 @@
         xmlns:local="clr-namespace:Don_tKnowHowToNameThis"
         mc:Ignorable="d"
         Title="AdminWindow" Height="368" Width="710"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize">
     <Grid>
         <Menu Grid.Row="0" Grid.ColumnSpan="3" Margin="0,0,121,0">
             <MenuItem Header="Файл" Height="25px">
                 <MenuItem Name="returnToLogin" Header="Сменить пользователя" Click="ChangeUser_Click" IsEnabled="True"/>
             </MenuItem>
         </Menu>
-        <TabControl Margin="0,30,0,0">
+        <TabControl Name="AdminTabs" Margin="0,30,0,0" SelectionChanged="Tab_OnSelectionChanged">
             <TabItem Name="loginTab">
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal">
@@ -66,9 +67,7 @@
                     </StackPanel>
                 </TabItem.Header>
                 <Grid ShowGridLines="True" RenderTransformOrigin="0.537,0.493">
-                    <Grid.RowDefinitions>
-                        <RowDefinition></RowDefinition>
-                    </Grid.RowDefinitions>
+                    
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="85*"></ColumnDefinition>
                         <ColumnDefinition Width="267*"></ColumnDefinition>
@@ -86,7 +85,7 @@
                             VerticalAlignment="Top" HorizontalAlignment="Left" Click="DeleteParameterButton_OnClick">Удалить параметр
                         </Button>
                     </StackPanel>
-                    <DataGrid d:ItemsSource="{d:SampleData ItemCount=5}" Grid.Row="0" Grid.Column="1"/>
+                    <DataGrid Name="ParameterDataGrid" ItemsSource="{Binding ParameterList}" Grid.Row="0" Grid.Column="1"/>
                 </Grid>
             </TabItem>
 

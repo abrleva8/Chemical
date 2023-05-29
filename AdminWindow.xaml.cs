@@ -17,6 +17,8 @@ namespace Don_tKnowHowToNameThis {
     /// Логика взаимодействия для AdminWindow.xaml
     /// </summary>
     public partial class AdminWindow : Window {
+
+        public List<DataBaseWorker.ParameterInfoWithId> ParameterList = new();
         public AdminWindow() {
            InitializeComponent();
         }
@@ -106,6 +108,17 @@ namespace Don_tKnowHowToNameThis {
 
         private void DeleteParameterButton_OnClick(object sender, RoutedEventArgs e) {
             new DeleteParameterWindow().ShowDialog();
+        }
+
+        private void Tab_OnSelectionChanged(object sender, SelectionChangedEventArgs e) {
+            if (ParameterTab.IsSelected) {
+                InitParameterDataGrid();
+            }
+        }
+
+        private void InitParameterDataGrid() {
+            ParameterList = DataBaseWorker.GetParameterTable();
+            ParameterDataGrid.ItemsSource = ParameterList;
         }
     }
 }
