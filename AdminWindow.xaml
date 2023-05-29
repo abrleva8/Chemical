@@ -84,6 +84,10 @@
                         <Button Name="DeleteParameterButton" Height="30" Width="145" Margin="10,51,0,0"
                             VerticalAlignment="Top" HorizontalAlignment="Left" Click="DeleteParameterButton_OnClick">Удалить параметр
                         </Button>
+
+                        <Button Name="DeleteParameterButton1" Height="30" Width="145" Margin="10,51,0,0"
+                            VerticalAlignment="Top" HorizontalAlignment="Left">Обновить таблицу
+                        </Button>
                     </StackPanel>
                     <DataGrid Name="ParameterDataGrid" ItemsSource="{Binding ParameterList}" Grid.Row="0" Grid.Column="1"/>
                 </Grid>
