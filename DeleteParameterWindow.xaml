@@ -5,24 +5,25 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Don_tKnowHowToNameThis"
         mc:Ignorable="d"
-        Title="DeleteParameterWindow" Height="291" Width="316">
+        Title="DeleteParameterWindow" Height="300" Width="316"
+        WindowStartupLocation="CenterScreen">
     <Grid>
         <StackPanel Margin="5">
             <Label Content="Удаление параметра" HorizontalContentAlignment="Center"/>
 
             <Label Content="ID параметра" Target="{Binding ElementName=ID_parameterComboBox}" />
-            <ComboBox Name="ID_parameterComboBox" />
+            <ComboBox Name="ID_parameterComboBox" DropDownClosed="ID_parameterComboBox_OnDropDownClosed"/>
 
             <Label Content="Название параметра" Target="{Binding ElementName=DeleteNameTextBox}" />
-            <TextBox Name="DeleteNameTextBox" />
+            <TextBox Name="DeleteNameTextBox" IsReadOnly="True"/>
 
             <Label Content="Символ" Target="{Binding ElementName=DeleteSymbolTextBox}" />
-            <TextBox Name="DeleteSymbolTextBox"/>
+            <TextBox Name="DeleteSymbolTextBox" IsReadOnly="True"/>
 
             <Label Content="Условное обозначение" Target="{Binding ElementName=DeleteUnitTextBox}" />
-            <TextBox Name="DeleteUnitTextBox"/>
+            <TextBox Name="DeleteUnitTextBox" IsReadOnly="True"/>
 
-            <Button Margin="20 20" Width="110">Удалить</Button>
+            <Button Margin="20 20" Width="110" Click="ButtonDelete_OnClick">Удалить</Button>
 
         </StackPanel>
 

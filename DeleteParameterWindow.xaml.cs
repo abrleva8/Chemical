@@ -19,6 +19,38 @@ namespace Don_tKnowHowToNameThis {
     public partial class DeleteParameterWindow : Window {
         public DeleteParameterWindow() {
             InitializeComponent();
+            InitParameterComboBox();
+        }
+        
+        private void InitParameterComboBox() {
+            ID_parameterComboBox.Items.Clear();
+            DataBaseWorker.GetParameters().ForEach(material => ID_parameterComboBox.Items.Add(material));
+        }
+
+        private void ID_parameterComboBox_OnDropDownClosed(object? sender, EventArgs e) {
+            var index = ID_parameterComboBox.SelectedIndex;
+            if (index == -1) {
+                return;
+            }
+            var p = DataBaseWorker.GetParameterById(Convert.ToInt32(ID_parameterComboBox.Text));
+            DeleteNameTextBox.Text = p!.Name;
+            DeleteSymbolTextBox.Text = p.Symbol;
+            DeleteUnitTextBox.Text = p.Unit;
+        }
+
+        private void ButtonDelete_OnClick(object sender, RoutedEventArgs e) {
+            var id = Convert.ToInt32(ID_parameterComboBox.Text);
+            DataBaseWorker.DeleteParameter(id);
+            InitParameterComboBox();
+            SetDefaultValues();
+            MessageBox.Show("Параметр удален!");
+            
+        }
+
+        private void SetDefaultValues() {
+            DeleteNameTextBox.Text = "";
+            DeleteSymbolTextBox.Text = "";
+            DeleteUnitTextBox.Text = "";
         }
     }
 }

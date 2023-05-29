@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Don_tKnowHowToNameThis"
         mc:Ignorable="d"
-        Title="AddUserWindow" Height="204" Width="306">
+        Title="AddUserWindow" Height="204" Width="306"
+        WindowStartupLocation="CenterScreen">
     <Grid>
 
         <StackPanel Margin="5">

@@ -103,5 +103,9 @@ namespace Don_tKnowHowToNameThis {
         private void ChangeParameterButton_OnClick(object sender, RoutedEventArgs e) {
             new ChangeParameterWindow().ShowDialog();
         }
+
+        private void DeleteParameterButton_OnClick(object sender, RoutedEventArgs e) {
+            new DeleteParameterWindow().ShowDialog();
+        }
     }
 }

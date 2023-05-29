@@ -82,7 +82,10 @@ namespace Don_tKnowHowToNameThis {
         }
 
         private void LoginToChangeTextBoxClosed(object sender, EventArgs e) {
-            PasswordToChangeTextBox.Text = logins[LoginToChangeTextBox.Text];
+            var t = LoginToChangeTextBox.SelectedIndex;
+            if (t != -1) {
+                PasswordToChangeTextBox.Text = logins[LoginToChangeTextBox.Text];
+            }
         }
     }
 }

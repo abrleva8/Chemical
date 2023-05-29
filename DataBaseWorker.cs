@@ -99,8 +99,17 @@ public abstract class DataBaseWorker {
     }
     
     public static void DeleteMaterial(string materialType) {
-
         var query = $"DELETE FROM material WHERE type = \"{materialType}\";";
+        using var connection = JoinBase();
+        var command = new MySqlCommand();
+        command.Connection = connection;
+        command.CommandText = query;
+        command.ExecuteReader();
+        connection.Close();
+    }
+    
+    public static void DeleteParameter(int id) {
+        var query = $"DELETE FROM parameter WHERE ID_parameter = {id};";
         using var connection = JoinBase();
         var command = new MySqlCommand();
         command.Connection = connection;

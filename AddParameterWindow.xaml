@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Don_tKnowHowToNameThis"
         mc:Ignorable="d"
-        Title="AddParameterWindow" Height="250" Width="265">
+        Title="AddParameterWindow" Height="250" Width="265"
+        WindowStartupLocation="CenterScreen">
     <Grid>
 
         <StackPanel Margin="5">

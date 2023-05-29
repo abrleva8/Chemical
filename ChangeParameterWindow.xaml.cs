@@ -43,6 +43,10 @@ namespace Don_tKnowHowToNameThis {
         }
 
         private void ID_parameterComboBox_OnDropDownClosed(object? sender, EventArgs e) {
+            var index = ID_parameterComboBox.SelectedIndex;
+            if (index == -1) {
+                return;
+            }
             var p = DataBaseWorker.GetParameterById(Convert.ToInt32(ID_parameterComboBox.Text));
             ChangeNameTextBox.Text = p!.Name;
             ChangeSymbolTextBox.Text = p.Symbol;

@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Don_tKnowHowToNameThis"
         mc:Ignorable="d"
-        Title="ChangeParameterWindow" Height="310" Width="325">
+        Title="ChangeParameterWindow" Height="310" Width="325"
+        WindowStartupLocation="CenterScreen">
     <Grid>
         <StackPanel Margin="5">
             <Label Content="Изменение параметра" HorizontalContentAlignment="Center"/>

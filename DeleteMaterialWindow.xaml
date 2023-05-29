@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Don_tKnowHowToNameThis"
         mc:Ignorable="d"
-        Title="DeleteMaterialWindow" Height="206" Width="318">
+        Title="DeleteMaterialWindow" Height="206" Width="318"
+        WindowStartupLocation="CenterScreen">
     <Grid>
 
         <StackPanel Margin="5">
