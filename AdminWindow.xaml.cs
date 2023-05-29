@@ -95,5 +95,13 @@ namespace Don_tKnowHowToNameThis {
         private void DeleteMaterialButton_Click(object sender, RoutedEventArgs e) {
             new DeleteMaterialWindow().ShowDialog();
         }
+
+        private void AddParameterButton_OnClick(object sender, RoutedEventArgs e) {
+            new AddParameterWindow().ShowDialog();
+        }
+
+        private void ChangeParameterButton_OnClick(object sender, RoutedEventArgs e) {
+            new ChangeParameterWindow().ShowDialog();
+        }
     }
 }

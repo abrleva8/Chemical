@@ -168,3 +168,9 @@ C:\Users\abrle\RiderProjects\Chemical\obj\Debug\net6.0-windows\AddUserWindow.bam
 C:\Users\abrle\RiderProjects\Chemical\obj\Debug\net6.0-windows\ChangePasswordWindow.baml
 C:\Users\abrle\RiderProjects\Chemical\obj\Debug\net6.0-windows\DeleteMaterialWindow.baml
 C:\Users\abrle\RiderProjects\Chemical\obj\Debug\net6.0-windows\DeleteUserWindow.baml
+C:\Users\abrle\RiderProjects\Chemical\obj\Debug\net6.0-windows\ChangeParameterWindow.g.cs
+C:\Users\abrle\RiderProjects\Chemical\obj\Debug\net6.0-windows\DeleteParameterWindow.g.cs
+C:\Users\abrle\RiderProjects\Chemical\obj\Debug\net6.0-windows\ChangeParameterWindow.baml
+C:\Users\abrle\RiderProjects\Chemical\obj\Debug\net6.0-windows\DeleteParameterWindow.baml
+C:\Users\abrle\RiderProjects\Chemical\obj\Debug\net6.0-windows\AddParameterWindow.g.cs
+C:\Users\abrle\RiderProjects\Chemical\obj\Debug\net6.0-windows\AddParameterWindow.baml

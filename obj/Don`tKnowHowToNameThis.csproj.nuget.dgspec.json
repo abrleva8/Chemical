@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\abrle\\source\\repos\\Chemical\\Don`tKnowHowToNameThis.csproj": {}
+    "C:\\Users\\abrle\\RiderProjects\\Chemical\\Don`tKnowHowToNameThis.csproj": {}
   },
   "projects": {
-    "C:\\Users\\abrle\\source\\repos\\Chemical\\Don`tKnowHowToNameThis.csproj": {
+    "C:\\Users\\abrle\\RiderProjects\\Chemical\\Don`tKnowHowToNameThis.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\abrle\\source\\repos\\Chemical\\Don`tKnowHowToNameThis.csproj",
+        "projectUniqueName": "C:\\Users\\abrle\\RiderProjects\\Chemical\\Don`tKnowHowToNameThis.csproj",
         "projectName": "Don`tKnowHowToNameThis",
-        "projectPath": "C:\\Users\\abrle\\source\\repos\\Chemical\\Don`tKnowHowToNameThis.csproj",
+        "projectPath": "C:\\Users\\abrle\\RiderProjects\\Chemical\\Don`tKnowHowToNameThis.csproj",
         "packagesPath": "C:\\Users\\abrle\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\abrle\\source\\repos\\Chemical\\obj\\",
+        "outputPath": "C:\\Users\\abrle\\RiderProjects\\Chemical\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "D:\\VS\\shared\\NuGetPackages"

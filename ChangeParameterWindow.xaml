@@ -5,13 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Don_tKnowHowToNameThis"
         mc:Ignorable="d"
-        Title="ChangeParameterWindow" Height="282" Width="325">
+        Title="ChangeParameterWindow" Height="310" Width="325">
     <Grid>
         <StackPanel Margin="5">
             <Label Content="Изменение параметра" HorizontalContentAlignment="Center"/>
 
             <Label Content="ID параметра" Target="{Binding ElementName=ID_parameterComboBox}" />
-            <ComboBox Name="ID_parameterComboBox" />
+            <ComboBox Name="ID_parameterComboBox" DropDownClosed="ID_parameterComboBox_OnDropDownClosed"/>
 
             <Label Content="Название параметра" Target="{Binding ElementName=ChangeNameTextBox}" />
             <TextBox Name="ChangeNameTextBox" />
@@ -22,7 +22,7 @@
             <Label Content="Условное обозначение" Target="{Binding ElementName=ChangeUnitTextBox}" />
             <TextBox Name="ChangeUnitTextBox"/>
 
-            <Button Margin="20 20" Width="110">Обновить</Button>
+            <Button Margin="20 20" Width="110" Click="ButtonRefresh_OnClick">Обновить</Button>
 
         </StackPanel>
 

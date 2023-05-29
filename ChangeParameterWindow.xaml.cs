@@ -19,6 +19,34 @@ namespace Don_tKnowHowToNameThis {
     public partial class ChangeParameterWindow : Window {
         public ChangeParameterWindow() {
             InitializeComponent();
+            InitParameterComboBox();
+        }
+
+        private void InitParameterComboBox() {
+            ID_parameterComboBox.Items.Clear();
+            DataBaseWorker.GetParameters().ForEach(material => ID_parameterComboBox.Items.Add(material));
+        }
+
+        private void ButtonRefresh_OnClick(object sender, RoutedEventArgs e) {
+            var name = ChangeNameTextBox.Text;
+            var symbol = ChangeSymbolTextBox.Text;
+            var unit = ChangeUnitTextBox.Text;
+            var id = Convert.ToInt32(ID_parameterComboBox.Text);
+            
+            if (AddParameterWindow.CheckNewParameter(name, symbol, unit)) {
+                return;
+            }
+            
+            var newParameter = new DataBaseWorker.ParameterInfo(name, symbol, unit);
+            DataBaseWorker.UpdateParameter(id, newParameter);
+            MessageBox.Show("Параметр обновлен!");
+        }
+
+        private void ID_parameterComboBox_OnDropDownClosed(object? sender, EventArgs e) {
+            var p = DataBaseWorker.GetParameterById(Convert.ToInt32(ID_parameterComboBox.Text));
+            ChangeNameTextBox.Text = p!.Name;
+            ChangeSymbolTextBox.Text = p.Symbol;
+            ChangeUnitTextBox.Text = p.Unit;
         }
     }
 }

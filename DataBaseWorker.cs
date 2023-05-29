@@ -4,15 +4,81 @@ using MySql.Data.MySqlClient;
 
 namespace Don_tKnowHowToNameThis; 
 
-public class DataBaseWorker {
+public abstract class DataBaseWorker {
 
     private static readonly string ConnectionString = ConfigurationManager.AppSettings["connectionString"]!;
+    
+    public record ParameterInfo(
+        string Name,
+        string Symbol,
+        string Unit
+    );
 
     private static MySqlConnection JoinBase() {
         var connection = new MySqlConnection();
         connection.ConnectionString = ConnectionString;
         connection.Open();
         return connection;
+    }
+    
+    public static void AddParameter(ParameterInfo parameterInfo) {
+
+        var query = "INSERT parameter(name, symbol, unit) " +
+                    $"VALUES ('{parameterInfo.Name}', '{parameterInfo.Symbol}', '{parameterInfo.Unit}');";
+        using var connection = JoinBase();
+        var command = new MySqlCommand();
+        command.Connection = connection;
+        command.CommandText = query;
+        command.ExecuteReader();
+        connection.Close();
+    }
+    
+    public static void UpdateParameter(int id, ParameterInfo parameterInfo) {
+
+        var query = "UPDATE parameter " +
+                    $"SET name = '{parameterInfo.Name}', symbol = '{parameterInfo.Symbol}', unit = '{parameterInfo.Unit}' " +
+                    $"WHERE ID_parameter = {id}";
+        using var connection = JoinBase();
+        var command = new MySqlCommand();
+        command.Connection = connection;
+        command.CommandText = query;
+        command.ExecuteReader();
+        connection.Close();
+    }
+    
+    public static List<int> GetParameters() {
+
+        const string query = "SELECT ID_parameter FROM parameter;";
+        using var connection = JoinBase();
+        var command = new MySqlCommand();
+        command.Connection = connection;
+        command.CommandText = query;
+        var reader = command.ExecuteReader();
+        var result = new List<int>();
+        while (reader.Read()) {
+            result.Add(reader.GetInt32(0));
+        }
+        connection.Close();
+        
+        return result;
+    }
+    
+    public static ParameterInfo? GetParameterById(int id) {
+        var query = "SELECT name, symbol, unit " +
+                    "FROM parameter " +
+                    $"WHERE ID_parameter = {id}";
+        using var connection = JoinBase();
+        var command = new MySqlCommand();
+        command.Connection = connection;
+        command.CommandText = query;
+        var reader = command.ExecuteReader();
+        ParameterInfo? result = null;
+        while (reader.Read()) {
+            result = new (reader.GetString(0),reader.GetString(1), reader.GetString(2));
+        }
+        connection.Close();
+        
+        return result;
     }
 
     public static List<string> GetMaterials() {
