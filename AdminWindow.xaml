@@ -5,17 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Don_tKnowHowToNameThis"
         mc:Ignorable="d"
-        Title="AdminWindow" Height="368" Width="710"
+        Title="AdminWindow" Height="400" Width="710"
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize">
     <Grid>
-        <Menu Grid.Row="0" Grid.ColumnSpan="3" Margin="0,0,121,0">
+        <Menu Grid.Row="0" Grid.ColumnSpan="3">
             <MenuItem Header="Файл" Height="25px">
                 <MenuItem Name="returnToLogin" Header="Сменить пользователя" Click="ChangeUser_Click" IsEnabled="True"/>
             </MenuItem>
         </Menu>
         <TabControl Name="AdminTabs" Margin="0,30,0,0" SelectionChanged="Tab_OnSelectionChanged">
-            <TabItem Name="loginTab">
+            <TabItem>
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal">
                         <Ellipse Height="10" Width="10" Fill="Black" />
@@ -85,8 +85,8 @@
                             VerticalAlignment="Top" HorizontalAlignment="Left" Click="DeleteParameterButton_OnClick">Удалить параметр
                         </Button>
 
-                        <Button Name="DeleteParameterButton1" Height="30" Width="145" Margin="10,51,0,0"
-                            VerticalAlignment="Top" HorizontalAlignment="Left">Обновить таблицу
+                        <Button Name="RefreshParameterDataGridButton" Height="30" Width="145" Margin="10,51,0,0"
+                            VerticalAlignment="Top" HorizontalAlignment="Left" Click="RefreshParameterDataGridButton_OnClick">Обновить таблицу
                         </Button>
                     </StackPanel>
                     <DataGrid Name="ParameterDataGrid" ItemsSource="{Binding ParameterList}" Grid.Row="0" Grid.Column="1"/>

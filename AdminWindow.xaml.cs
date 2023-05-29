@@ -120,5 +120,9 @@ namespace Don_tKnowHowToNameThis {
             ParameterList = DataBaseWorker.GetParameterTable();
             ParameterDataGrid.ItemsSource = ParameterList;
         }
+
+        private void RefreshParameterDataGridButton_OnClick(object sender, RoutedEventArgs e) {
+            InitParameterDataGrid();
+        }
     }
 }
