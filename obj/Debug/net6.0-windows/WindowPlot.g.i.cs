@@ -109,7 +109,7 @@ namespace Don_tKnowHowToNameThis {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Don`tKnowHowToNameThis;component/windowplot.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Don`tKnowHowToNameThis;V1.0.0.0;component/windowplot.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\WindowPlot.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

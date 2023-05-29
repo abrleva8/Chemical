@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Don_tKnowHowToNameThis"
         mc:Ignorable="d"
-        Title="AdminWindow" Height="235" Width="280"
+        Title="AdminWindow" Height="368" Width="710"
         WindowStartupLocation="CenterScreen">
     <Grid>
         <Menu Grid.Row="0" Grid.ColumnSpan="3" Margin="0,0,121,0">
@@ -65,20 +65,31 @@
                         <TextBlock Margin="3">Параметры</TextBlock>
                     </StackPanel>
                 </TabItem.Header>
-                <Grid>
-                    <Button Name="AddParameterButton" Height="30" Width="146" Margin="0,10,0,0"
-                            VerticalAlignment="Top" HorizontalAlignment="Center" Click="AddParameterButton_OnClick">Добавить параметр
-                    </Button>
+                <Grid ShowGridLines="True" RenderTransformOrigin="0.537,0.493">
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="85*"></ColumnDefinition>
+                        <ColumnDefinition Width="267*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Row="0" Grid.Column="0">
+                        <Button Name="AddParameterButton" Height="30" Width="146" Margin="10,10,0,0"
+                            VerticalAlignment="Top" HorizontalAlignment="Left" Click="AddParameterButton_OnClick">Добавить параметр
+                        </Button>
 
-                    <Button Name="ChangeParameterButton" Height="30" Width="145" Margin="0,55,0,0"
-                            VerticalAlignment="Top" HorizontalAlignment="Center" Click="ChangeParameterButton_OnClick">Изменить параметр
-                    </Button>
+                        <Button Name="ChangeParameterButton" Height="30" Width="145" Margin="10,51,0,0"
+                            VerticalAlignment="Top" HorizontalAlignment="Left" Click="ChangeParameterButton_OnClick" RenderTransformOrigin="0.51,1.369">Изменить параметр
+                        </Button>
 
-                    <Button Name="DeleteParameterButton" Height="30" Width="145" Margin="0,100,0,0"
-                            VerticalAlignment="Top" HorizontalAlignment="Center" Click="DeleteParameterButton_OnClick">Удалить параметр
-                    </Button>
+                        <Button Name="DeleteParameterButton" Height="30" Width="145" Margin="10,51,0,0"
+                            VerticalAlignment="Top" HorizontalAlignment="Left" Click="DeleteParameterButton_OnClick">Удалить параметр
+                        </Button>
+                    </StackPanel>
+                    <DataGrid d:ItemsSource="{d:SampleData ItemCount=5}" Grid.Row="0" Grid.Column="1"/>
                 </Grid>
             </TabItem>
+
         </TabControl>
     </Grid>
 
