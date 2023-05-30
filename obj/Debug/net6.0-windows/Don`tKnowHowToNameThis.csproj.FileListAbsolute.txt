@@ -180,3 +180,5 @@ C:\Users\abrle\source\repos\Chemical\obj\Debug\net6.0-windows\DeleteParameterWin
 C:\Users\abrle\source\repos\Chemical\obj\Debug\net6.0-windows\AddParameterWindow.baml
 C:\Users\abrle\source\repos\Chemical\obj\Debug\net6.0-windows\ChangeParameterWindow.baml
 C:\Users\abrle\source\repos\Chemical\obj\Debug\net6.0-windows\DeleteParameterWindow.baml
+C:\Users\abrle\source\repos\Chemical\obj\Debug\net6.0-windows\AddMaterialWindow.g.cs
+C:\Users\abrle\source\repos\Chemical\obj\Debug\net6.0-windows\AddMaterialWindow.baml

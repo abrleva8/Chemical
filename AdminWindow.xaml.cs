@@ -88,7 +88,7 @@ namespace Don_tKnowHowToNameThis {
         }
 
         private void AddMaterialButton_Click(object sender, RoutedEventArgs e) {
-
+            new AddMaterialWindow().ShowDialog();
         }
 
         private void ChangeMaterialButton_Click(object sender, RoutedEventArgs e) {
