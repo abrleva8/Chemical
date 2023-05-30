@@ -23,6 +23,7 @@
                     </StackPanel>
                 </TabItem.Header>
                 <Grid>
+                    
                     <Button Name="AddUserButton" Height="30" Width="146" Margin="0,10,0,0"
                     VerticalAlignment="Top" HorizontalAlignment="Center" Click="AddUserButton_Click">Добавить пользователя
                     </Button>
@@ -37,6 +38,7 @@
                 </Grid>
             </TabItem>
             <TabItem x:Name="MaterialTab">
+                
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal">
                         <Rectangle Height="10" Width="10" Fill="Black" />
@@ -44,19 +46,28 @@
                     </StackPanel>
                 </TabItem.Header>
                 <Grid>
-                    <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="85*"></ColumnDefinition>
+                        <ColumnDefinition Width="267*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Row="0" Grid.Column="0">
                         <Button Name="AddMaterialButton" Height="30" Width="146" Margin="0,10,0,0"
                     VerticalAlignment="Top" HorizontalAlignment="Center" Click="AddMaterialButton_Click">Добавить материал
                         </Button>
 
-                        <Button Name="ChangeMaterialButton" Height="30" Width="145" Margin="0,55,0,0"
+                        <Button Name="ChangeMaterialButton" Height="30" Width="145" Margin="0,51,0,0"
                     VerticalAlignment="Top" HorizontalAlignment="Center" Click="ChangeMaterialButton_Click">Изменить материал
                         </Button>
 
-                        <Button Name="DeleteMaterialButton" Height="30" Width="145" Margin="0,100,0,0"
+                        <Button Name="DeleteMaterialButton" Height="30" Width="145" Margin="0,51,0,0"
                     VerticalAlignment="Top" HorizontalAlignment="Center" Click="DeleteMaterialButton_Click">Удалить материал
                         </Button>
-                    </Grid>
+
+                        <Button Name="DeleteMaterialButton1" Height="30" Width="145" Margin="0,51,0,0"
+                    VerticalAlignment="Top" HorizontalAlignment="Center">Обновить таблицу
+                        </Button>
+                    </StackPanel>
+                    <DataGrid Name="MaterialDataGrid" ItemsSource="{Binding MaterialList}" Grid.Row="0" Grid.Column="1"/>
                 </Grid>
             </TabItem>
             <TabItem Name="ParameterTab">
