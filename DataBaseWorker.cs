@@ -47,6 +47,18 @@ public abstract class DataBaseWorker {
         connection.Close();
     }
     
+    public static void AddMaterial(string materialType) {
+
+        var query = "INSERT material(type) " +
+                    $"VALUES ('{materialType}');";
+        using var connection = JoinBase();
+        var command = new MySqlCommand();
+        command.Connection = connection;
+        command.CommandText = query;
+        command.ExecuteReader();
+        connection.Close();
+    }
+    
     public static void UpdateParameter(int id, ParameterInfo parameterInfo) {
 
         var query = "UPDATE parameter " +
@@ -76,7 +88,7 @@ public abstract class DataBaseWorker {
         
         return result;
     }
-    
+
     public static ParameterInfo? GetParameterById(int id) {
         var query = "SELECT name, symbol, unit " +
                     "FROM parameter " +
@@ -89,6 +101,42 @@ public abstract class DataBaseWorker {
         ParameterInfo? result = null;
         while (reader.Read()) {
             result = new (reader.GetString(0),reader.GetString(1), reader.GetString(2));
+        }
+        connection.Close();
+        
+        return result;
+    }
+    
+    public static int? GetMaterialIdByType(string type) {
+        var query = "SELECT ID_material " +
+                    "FROM material " +
+                    $"WHERE type = '{type}'";
+        using var connection = JoinBase();
+        var command = new MySqlCommand();
+        command.Connection = connection;
+        command.CommandText = query;
+        var reader = command.ExecuteReader();
+        int? result = null;
+        while (reader.Read()) {
+            result = reader.GetInt32(0);
+        }
+        connection.Close();
+        
+        return result;
+    }
+    
+    public static int? GetParameterIdByName(string name) {
+        var query = "SELECT ID_material " +
+                    "FROM material " +
+                    $"WHERE type = '{name}'";
+        using var connection = JoinBase();
+        var command = new MySqlCommand();
+        command.Connection = connection;
+        command.CommandText = query;
+        var reader = command.ExecuteReader();
+        int? result = null;
+        while (reader.Read()) {
+            result = reader.GetInt32(0);
         }
         connection.Close();
         

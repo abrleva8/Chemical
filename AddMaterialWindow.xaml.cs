@@ -19,7 +19,15 @@ namespace Don_tKnowHowToNameThis
     /// </summary>
     public partial class AddMaterialWindow : Window {
         private List<string> _parameters = new();
+        private List<Xrecord> _info = new();
         private static int _rows;
+        
+        public record Xrecord(
+            string Parameter,
+            double Value,
+            string Type
+        );
+        
         public AddMaterialWindow() {
             InitializeComponent();
             InitParameters();
@@ -37,7 +45,7 @@ namespace Don_tKnowHowToNameThis
             var typeComboBox = TypeComboBox();
             var parameterNameComboBox = ParameterNameComboBox();
             var textBox = new TextBox();
-            textBox.Text = "333";
+            textBox.Name = $"textBox_{_rows}";
             TextEditButtons.Children.Add(parameterNameComboBox);
             TextEditButtons.Children.Add(typeComboBox);
             TextEditButtons.Children.Add(textBox);
@@ -52,7 +60,7 @@ namespace Don_tKnowHowToNameThis
 
         private static ComboBox ParameterNameComboBox() {
             var parameterNameComboBox = new ComboBox {
-                Name = $"typeComboBox_{_rows}"
+                Name = $"parameterNameComboBox_{_rows}"
             };
             DataBaseWorker.GetParametersName().ForEach(material => parameterNameComboBox.Items.Add(material));
             parameterNameComboBox.SelectedIndex = 0;
@@ -63,7 +71,7 @@ namespace Don_tKnowHowToNameThis
             var typeComboBox = new ComboBox {
                 Name = $"typeComboBox_{_rows}"
             };
-            typeComboBox.Items.Add("Параметр");
+            typeComboBox.Items.Add("Свойство материала");
             typeComboBox.Items.Add("Коэффициент");
             typeComboBox.SelectedIndex = 0;
             return typeComboBox;
@@ -73,11 +81,56 @@ namespace Don_tKnowHowToNameThis
             var name = AddNameTextBox.Text;
             if (name == "") {
                 MessageBox.Show("Имя не может быть пустым!");
+                return;
             }
 
             if (_rows == 0) {
                 MessageBox.Show("Добавьте, хотя бы один параметр!");
+                return;
             }
+
+            var comboBoxes = TextEditButtons.Children.OfType<ComboBox>();
+            var textBoxes = TextEditButtons.Children.OfType<TextBox>();
+            for (var i = 0; i < _rows; i++) {
+                string parameter = GetParameter(comboBoxes, i);
+                double value = GetValue(textBoxes, i);
+                string type = GetType(comboBoxes, i);
+            }
+
+            DataBaseWorker.AddMaterial(name);
+            var x = DataBaseWorker.GetMaterialIdByType(name);
+            var y = DataBaseWorker.GetParameterIdByName(name);
+            MessageBox.Show("Good!" + x + " " + y);
+        }
+
+        private static string GetParameter(IEnumerable<ComboBox> comboBoxes, int i) {
+            foreach (var x in comboBoxes) {
+                if (x.Name == $"parameterNameComboBox_{i}") {
+                    return x.Text;
+                }
+            }
+
+            return "";
+        }
+        
+        private static double GetValue(IEnumerable<TextBox> comboBoxes, int i) {
+            foreach (var x in comboBoxes) {
+                if (x.Name == $"textBox_{i}") {
+                    return Convert.ToDouble(x.Text);
+                }
+            }
+
+            return -1;
+        }
+        
+        private static string GetType(IEnumerable<ComboBox> comboBoxes, int i) {
+            foreach (var x in comboBoxes) {
+                if (x.Name == $"typeComboBox_{i}") {
+                    return x.Text;
+                }
+            }
+
+            return "";
         }
     }
 }
