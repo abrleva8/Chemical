@@ -6,6 +6,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Diagnostics;
+using System.IO;
 
 namespace Don_tKnowHowToNameThis {
     /// <summary>
@@ -301,6 +302,25 @@ namespace Don_tKnowHowToNameThis {
         private void ChangeUser_Click(object sender, RoutedEventArgs e) {
             new LoginWindow().Show();
             Close();
+        }
+
+        private void ClickExport(object sender, RoutedEventArgs e) {
+                string commands = @"cd C:\Program Files\MySQL\MySQL Server 8.0\bin && mysqldump.exe -h127.0.0.1 " +
+                @$"-uroot -p31August2008 —add-drop-database —databases flowmodel > {Environment.CurrentDirectory}\dump.sql";
+                string batPath = Path.Combine(Path.GetTempPath(), "dump.bat");
+                File.WriteAllText(batPath, commands);
+                Process cmd = Process.Start(batPath);
+                cmd.WaitForExit();
+                File.Delete(batPath);
+        }
+
+        private void ClickImport(object sender, RoutedEventArgs e) {
+            string commands = @$"cd C:\Program Files\MySQL\MySQL Server 8.0\bin && mysql -uroot -proot flowmodel < {Environment.CurrentDirectory}\dump.sql";
+            string batPath = Path.Combine(Path.GetTempPath(), "dump.bat");
+            File.WriteAllText(batPath, commands);
+            Process cmd = Process.Start(batPath);
+            cmd.WaitForExit();
+            File.Delete(batPath);
         }
     }
 }
