@@ -59,6 +59,18 @@ public abstract class DataBaseWorker {
         connection.Close();
     }
     
+    public static void AddMaterialParameter(AddMaterialWindow.Xrecord record) {
+
+        var query = "INSERT INTO parameter_material_attr (ID_material, ID_parameter, value, type) " +
+                    $"VALUES ({record.IdMaterial}, {record.IdParameter}, {record.Value}, '{record.Type}');";
+        var connection = JoinBase();
+        var command = new MySqlCommand();
+        command.Connection = connection;
+        command.CommandText = query;
+        command.ExecuteReader();
+        connection.Close();
+    }
+    
     public static void UpdateParameter(int id, ParameterInfo parameterInfo) {
 
         var query = "UPDATE parameter " +
@@ -107,7 +119,7 @@ public abstract class DataBaseWorker {
         return result;
     }
     
-    public static int? GetMaterialIdByType(string type) {
+    public static int GetMaterialIdByType(string type) {
         var query = "SELECT ID_material " +
                     "FROM material " +
                     $"WHERE type = '{type}'";
@@ -116,7 +128,7 @@ public abstract class DataBaseWorker {
         command.Connection = connection;
         command.CommandText = query;
         var reader = command.ExecuteReader();
-        int? result = null;
+        var result = 0;
         while (reader.Read()) {
             result = reader.GetInt32(0);
         }
@@ -126,9 +138,9 @@ public abstract class DataBaseWorker {
     }
     
     public static int? GetParameterIdByName(string name) {
-        var query = "SELECT ID_material " +
-                    "FROM material " +
-                    $"WHERE type = '{name}'";
+        var query = "SELECT ID_parameter " +
+                    "FROM parameter " +
+                    $"WHERE name = '{name}'";
         using var connection = JoinBase();
         var command = new MySqlCommand();
         command.Connection = connection;

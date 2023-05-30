@@ -305,22 +305,35 @@ namespace Don_tKnowHowToNameThis {
         }
 
         private void ClickExport(object sender, RoutedEventArgs e) {
+            try {
+
                 string commands = @"cd C:\Program Files\MySQL\MySQL Server 8.0\bin && mysqldump.exe -h127.0.0.1 " +
-                @$"-uroot -p31August2008 —add-drop-database —databases flowmodel > {Environment.CurrentDirectory}\dump.sql";
+                                  @$"-uroot -p31August2008 chemical > {Environment.CurrentDirectory}\dump.sql";
                 string batPath = Path.Combine(Path.GetTempPath(), "dump.bat");
                 File.WriteAllText(batPath, commands);
                 Process cmd = Process.Start(batPath);
                 cmd.WaitForExit();
                 File.Delete(batPath);
+                MessageBox.Show("Резервная копия успешно создана");
+            }
+            catch {
+                MessageBox.Show("Возникла ошибка при создании резервной копии");
+            }
         }
 
         private void ClickImport(object sender, RoutedEventArgs e) {
-            string commands = @$"cd C:\Program Files\MySQL\MySQL Server 8.0\bin && mysql -uroot -proot flowmodel < {Environment.CurrentDirectory}\dump.sql";
-            string batPath = Path.Combine(Path.GetTempPath(), "dump.bat");
-            File.WriteAllText(batPath, commands);
-            Process cmd = Process.Start(batPath);
-            cmd.WaitForExit();
-            File.Delete(batPath);
+            try {
+                string commands = @$"cd C:\Program Files\MySQL\MySQL Server 8.0\bin && mysql -uroot -p31August2008 chemical < {Environment.CurrentDirectory}\dump.sql";
+                string batPath = Path.Combine(Path.GetTempPath(), "dump.bat");
+                File.WriteAllText(batPath, commands);
+                Process cmd = Process.Start(batPath);
+                cmd.WaitForExit();
+                File.Delete(batPath);
+                MessageBox.Show("Резервная копия успешно загружена");
+            }
+            catch {
+                MessageBox.Show("Возникла ошибка при загрузки резервной копии");
+            }
         }
     }
 }

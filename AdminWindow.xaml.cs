@@ -134,5 +134,9 @@ namespace Don_tKnowHowToNameThis {
         private void RefreshParameterDataGridButton_OnClick(object sender, RoutedEventArgs e) {
             InitParameterDataGrid();
         }
+
+        private void RefreshTableButton_OnClick(object sender, RoutedEventArgs e) {
+            InitMaterialDataGrid();
+        }
     }
 }

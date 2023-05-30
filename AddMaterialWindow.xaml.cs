@@ -23,7 +23,8 @@ namespace Don_tKnowHowToNameThis
         private static int _rows;
         
         public record Xrecord(
-            string Parameter,
+            int IdMaterial,
+            int? IdParameter,
             double Value,
             string Type
         );
@@ -91,16 +92,25 @@ namespace Don_tKnowHowToNameThis
 
             var comboBoxes = TextEditButtons.Children.OfType<ComboBox>();
             var textBoxes = TextEditButtons.Children.OfType<TextBox>();
-            for (var i = 0; i < _rows; i++) {
-                string parameter = GetParameter(comboBoxes, i);
-                double value = GetValue(textBoxes, i);
-                string type = GetType(comboBoxes, i);
-            }
-
             DataBaseWorker.AddMaterial(name);
-            var x = DataBaseWorker.GetMaterialIdByType(name);
-            var y = DataBaseWorker.GetParameterIdByName(name);
-            MessageBox.Show("Good!" + x + " " + y);
+            MessageBox.Show("Добавил имя");
+            var materialId = DataBaseWorker.GetMaterialIdByType(name);
+            for (var i = 0; i < _rows; i++) {
+                var parameter = GetParameter(comboBoxes, i);
+                double value;
+                try {
+                    value = GetValue(textBoxes, i);
+                } catch (Exception) {
+                    MessageBox.Show("Введите числа!");
+                    return;
+                }
+                string type = GetType(comboBoxes, i);
+                int? paramId = DataBaseWorker.GetParameterIdByName(parameter);
+                var x = new Xrecord(materialId, paramId, value, type);
+                DataBaseWorker.AddMaterialParameter(x);
+                MessageBox.Show("Добавил параметр " + i);
+            }
+            MessageBox.Show("Ура! Победа!");
         }
 
         private static string GetParameter(IEnumerable<ComboBox> comboBoxes, int i) {

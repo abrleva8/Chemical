@@ -20,6 +20,7 @@ public partial class LoginWindow {
             user = Check(currentPassword, currentLogin);
         } catch (LoginException loginException) {
             MessageBox.Show(loginException.ToString());
+            return;
         }
 
         switch (user) {

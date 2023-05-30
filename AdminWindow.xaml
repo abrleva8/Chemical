@@ -63,8 +63,8 @@
                     VerticalAlignment="Top" HorizontalAlignment="Center" Click="DeleteMaterialButton_Click">Удалить материал
                         </Button>
 
-                        <Button Name="DeleteMaterialButton1" Height="30" Width="145" Margin="0,51,0,0"
-                    VerticalAlignment="Top" HorizontalAlignment="Center">Обновить таблицу
+                        <Button Name="RefreshTableButton" Height="30" Width="145" Margin="0,51,0,0"
+                    VerticalAlignment="Top" HorizontalAlignment="Center" Click="RefreshTableButton_OnClick">Обновить таблицу
                         </Button>
                     </StackPanel>
                     <DataGrid Name="MaterialDataGrid" ItemsSource="{Binding }" Grid.Row="0" Grid.Column="1"/>
