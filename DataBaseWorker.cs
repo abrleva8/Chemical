@@ -14,6 +14,13 @@ public abstract class DataBaseWorker {
         string Unit
     );
     
+    public record MaterialInfoNames(
+        string MaterialName,
+        string ParameterName,
+        double Value,
+        string Type
+    );
+    
     public record ParameterInfoWithId(
         int Id,
         string Name,
@@ -121,6 +128,27 @@ public abstract class DataBaseWorker {
         while (reader.Read()) {
             result.Add(new (reader.GetInt32(0), reader.GetString(1),
                                 reader.GetString(2), reader.GetString(3)));
+        }
+        connection.Close();
+        
+        return result;
+    }
+    
+    public static List<MaterialInfoNames> GetMaterialTable() {
+
+        const string query = "SELECT m.type, p.name, value, parameter_material_attr.type " +
+                             "FROM parameter_material_attr " +
+                             "JOIN material m on parameter_material_attr.ID_material = m.ID_material " +
+                             "JOIN parameter p on parameter_material_attr.ID_parameter = p.ID_parameter;";
+        using var connection = JoinBase();
+        var command = new MySqlCommand();
+        command.Connection = connection;
+        command.CommandText = query;
+        var reader = command.ExecuteReader();
+        var result = new List<MaterialInfoNames>();
+        while (reader.Read()) {
+            result.Add(new (reader.GetString(0), reader.GetString(1),
+                reader.GetDouble(2), reader.GetString(3)));
         }
         connection.Close();
         

@@ -19,6 +19,7 @@ namespace Don_tKnowHowToNameThis {
     public partial class AdminWindow : Window {
 
         public List<DataBaseWorker.ParameterInfoWithId> ParameterList = new();
+        public List<DataBaseWorker.MaterialInfoNames> MaterialList = new();
         public AdminWindow() {
            InitializeComponent();
         }
@@ -114,6 +115,15 @@ namespace Don_tKnowHowToNameThis {
             if (ParameterTab.IsSelected) {
                 InitParameterDataGrid();
             }
+
+            if (MaterialTab.IsSelected) {
+                InitMaterialDataGrid();
+            }
+        }
+
+        private void InitMaterialDataGrid() {
+            MaterialList = DataBaseWorker.GetMaterialTable();
+            MaterialDataGrid.ItemsSource = MaterialList;
         }
 
         private void InitParameterDataGrid() {

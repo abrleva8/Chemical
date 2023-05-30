@@ -67,7 +67,7 @@
                     VerticalAlignment="Top" HorizontalAlignment="Center">Обновить таблицу
                         </Button>
                     </StackPanel>
-                    <DataGrid Name="MaterialDataGrid" ItemsSource="{Binding MaterialList}" Grid.Row="0" Grid.Column="1"/>
+                    <DataGrid Name="MaterialDataGrid" ItemsSource="{Binding }" Grid.Row="0" Grid.Column="1"/>
                 </Grid>
             </TabItem>
             <TabItem Name="ParameterTab">
