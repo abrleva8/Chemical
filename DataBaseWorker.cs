@@ -60,7 +60,7 @@ public abstract class DataBaseWorker {
         connection.Close();
     }
     
-    public static List<int> GetParameters() {
+    public static List<int> GetParametersId() {
 
         const string query = "SELECT ID_parameter FROM parameter;";
         using var connection = JoinBase();
@@ -98,6 +98,23 @@ public abstract class DataBaseWorker {
     public static List<string> GetMaterials() {
 
         const string query = "SELECT type FROM material";
+        using var connection = JoinBase();
+        var command = new MySqlCommand();
+        command.Connection = connection;
+        command.CommandText = query;
+        var reader = command.ExecuteReader();
+        var result = new List<string>();
+        while (reader.Read()) {
+            result.Add(reader.GetString(0));
+        }
+        connection.Close();
+        
+        return result;
+    }
+    
+    public static List<string> GetParametersName() {
+
+        const string query = "SELECT name FROM parameter";
         using var connection = JoinBase();
         var command = new MySqlCommand();
         command.Connection = connection;

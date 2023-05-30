@@ -24,7 +24,7 @@ namespace Don_tKnowHowToNameThis {
         
         private void InitParameterComboBox() {
             ID_parameterComboBox.Items.Clear();
-            DataBaseWorker.GetParameters().ForEach(material => ID_parameterComboBox.Items.Add(material));
+            DataBaseWorker.GetParametersId().ForEach(material => ID_parameterComboBox.Items.Add(material));
         }
 
         private void ID_parameterComboBox_OnDropDownClosed(object? sender, EventArgs e) {

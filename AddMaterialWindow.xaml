@@ -18,12 +18,17 @@
                 <Grid Name="TextEditButtons">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="64*"></ColumnDefinition>
+                        <ColumnDefinition Width="80*"></ColumnDefinition>
                         <ColumnDefinition Width="43*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                 </Grid>
 
-                <Button Margin="20 20" Click="Button_Click">
+                <Button Margin="20 20" Click="AddRowButton_Click">
                     Добавить новый параметр
+                </Button>
+                
+                <Button Margin="20 20" Click="ButtonSendBase_OnClick">
+                    Отправить в базу
                 </Button>
 
             </StackPanel>
