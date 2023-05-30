@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Don_tKnowHowToNameThis"
         mc:Ignorable="d"
-        Title="AddMaterialWindow" Height="450" Width="331"
+        Title="AddMaterialWindow" Height="450" Width="430"
         WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid>
@@ -17,16 +17,16 @@
                 <TextBox Name="AddNameTextBox"/>
                 <Grid Name="TextEditButtons">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="64*"></ColumnDefinition>
+                        <ColumnDefinition Width="243*"></ColumnDefinition>
                         <ColumnDefinition Width="80*"></ColumnDefinition>
-                        <ColumnDefinition Width="43*"></ColumnDefinition>
+                        <ColumnDefinition Width="97*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                 </Grid>
 
                 <Button Margin="20 20" Click="AddRowButton_Click">
                     Добавить новый параметр
                 </Button>
-                
+
                 <Button Margin="20 20" Click="ButtonSendBase_OnClick">
                     Отправить в базу
                 </Button>

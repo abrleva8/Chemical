@@ -37,9 +37,10 @@ namespace Don_tKnowHowToNameThis
             var typeComboBox = TypeComboBox();
             var parameterNameComboBox = ParameterNameComboBox();
             var textBox = new TextBox();
-            textBox.IsEnabled = true;
+            textBox.Text = "333";
             TextEditButtons.Children.Add(parameterNameComboBox);
             TextEditButtons.Children.Add(typeComboBox);
+            TextEditButtons.Children.Add(textBox);
             Grid.SetRow(parameterNameComboBox, TextEditButtons.RowDefinitions.Count - 1);
             Grid.SetRow(textBox, TextEditButtons.RowDefinitions.Count - 1);
             Grid.SetRow(typeComboBox, TextEditButtons.RowDefinitions.Count - 1);
