@@ -19,6 +19,8 @@ namespace Don_tKnowHowToNameThis {
     public partial class ChangeMaterialWindow : Window {
         public ChangeMaterialWindow() {
             InitializeComponent();
+            ID_materialComboBox.Items.Clear();
+            DataBaseWorker.GetParametersId().ForEach(material => ID_materialComboBox.Items.Add(material));
         }
     }
 }

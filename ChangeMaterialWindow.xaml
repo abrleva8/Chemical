@@ -7,6 +7,31 @@
         mc:Ignorable="d"
         Title="ChangeMaterialWindow" Height="450" Width="800">
     <Grid>
-        
+        <Grid>
+
+            <StackPanel Margin="5">
+                <Label Content="Изменить материал" HorizontalContentAlignment="Center"/>
+
+                <Label Content="Название материала" Target="{Binding ElementName=AddNameTextBox}" />
+                <ComboBox Name="ID_materialComboBox"/>
+                <Grid Name="TextEditButtons">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="243*"></ColumnDefinition>
+                        <ColumnDefinition Width="80*"></ColumnDefinition>
+                        <ColumnDefinition Width="97*"></ColumnDefinition>
+                        <ColumnDefinition Width="50*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                </Grid>
+
+                <Button Margin="20 20" >
+                    Добавить новый параметр
+                </Button>
+                <Button Margin="20 20" >
+                    Отправить в базу
+                </Button>
+
+            </StackPanel>
+
+        </Grid>
     </Grid>
 </Window>
