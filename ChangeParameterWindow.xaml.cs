@@ -20,6 +20,7 @@ namespace Don_tKnowHowToNameThis {
         public ChangeParameterWindow() {
             InitializeComponent();
             InitParameterComboBox();
+
         }
 
         private void InitParameterComboBox() {
