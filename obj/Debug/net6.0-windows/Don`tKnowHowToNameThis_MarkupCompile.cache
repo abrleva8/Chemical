@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\abrle\Source\Repos\Chemical\obj\Debug\net6.0-windows\
+C:\Users\abrle\RiderProjects\Chemical\obj\Debug\net6.0-windows\
 Don_tKnowHowToNameThis
 none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
-C:\Users\abrle\Source\Repos\Chemical\App.xaml
-13-246805
+C:\Users\abrle\RiderProjects\Chemical\App.xaml
+14-507016052
 
-231322995157
+2455634497
 223736059977
-AddMaterialWindow.xaml;AddParameterWindow.xaml;AddUserWindow.xaml;AdminWindow.xaml;ChangeParameterWindow.xaml;ChangePasswordWindow.xaml;DeleteMaterialWindow.xaml;DeleteParameterWindow.xaml;DeleteUserWindow.xaml;LoginWindow.xaml;MainWindow.xaml;Table.xaml;WindowPlot.xaml;
+AddMaterialWindow.xaml;AddParameterWindow.xaml;AddUserWindow.xaml;AdminWindow.xaml;ChangeMaterialWindow.xaml;ChangeParameterWindow.xaml;ChangePasswordWindow.xaml;DeleteMaterialWindow.xaml;DeleteParameterWindow.xaml;DeleteUserWindow.xaml;LoginWindow.xaml;MainWindow.xaml;Table.xaml;WindowPlot.xaml;
 
 False
 

@@ -184,3 +184,5 @@ C:\Users\abrle\source\repos\Chemical\obj\Debug\net6.0-windows\AddMaterialWindow.
 C:\Users\abrle\source\repos\Chemical\obj\Debug\net6.0-windows\AddMaterialWindow.baml
 C:\Users\abrle\RiderProjects\Chemical\obj\Debug\net6.0-windows\AddMaterialWindow.g.cs
 C:\Users\abrle\RiderProjects\Chemical\obj\Debug\net6.0-windows\AddMaterialWindow.baml
+C:\Users\abrle\RiderProjects\Chemical\obj\Debug\net6.0-windows\ChangeMaterialWindow.g.cs
+C:\Users\abrle\RiderProjects\Chemical\obj\Debug\net6.0-windows\ChangeMaterialWindow.baml

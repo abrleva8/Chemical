@@ -27,6 +27,11 @@ public abstract class DataBaseWorker {
         string Symbol,
         string Unit
     );
+    
+    public record MaterialInfoWithId(
+        string Name, 
+        double Value,
+        string Type);
 
     private static MySqlConnection JoinBase() {
         var connection = new MySqlConnection();
@@ -154,7 +159,24 @@ public abstract class DataBaseWorker {
         
         return result;
     }
-
+    public static List<MaterialInfoWithId> GetParameterByNameMaterial(string name) {
+        string query = "SELECT name, value, p.type " +
+                             "FROM chemical.material c " +
+                             $"join parameter_material_attr p on c.ID_material = p.ID_material and c.type = \"{name}\" " +
+                             "join parameter par on p.ID_parameter = par.ID_parameter;";
+        using var connection = JoinBase();
+        var command = new MySqlCommand();
+        command.Connection = connection;
+        command.CommandText = query;
+        var reader = command.ExecuteReader();
+        var result = new List<MaterialInfoWithId>();
+        while (reader.Read()) {
+            result.Add(new (reader.GetString(0), reader.GetDouble(1), reader.GetString(2)));
+        }
+        connection.Close();
+        
+        return result;
+    }
     public static List<string> GetMaterials() {
 
         const string query = "SELECT type FROM material";
@@ -241,7 +263,7 @@ public abstract class DataBaseWorker {
         command.ExecuteReader();
         connection.Close();
     }
-    
+
     public static void DeleteParameter(int id) {
         var query = $"DELETE FROM parameter WHERE ID_parameter = {id};";
         using var connection = JoinBase();

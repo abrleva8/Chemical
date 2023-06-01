@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "WYSvu4O37/lo5CfyPX0/MHKww801cAikEWK6FdFHgrZ2g2FjyXlKzpZAqZRImEgM0eyjzJqZAIe1Ejzp2beiAA==",
+  "dgSpecHash": "M7tREAWhye6Z3Tc48LlH2nebRUD7b9NJth3r71onTbjfuY0+MSI9ocHtzsW8a/iL3M+J34mvMzpCc67wdCnPqA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\abrle\\Source\\Repos\\Chemical\\Don`tKnowHowToNameThis.csproj",
+  "projectFilePath": "C:\\Users\\abrle\\RiderProjects\\Chemical\\Don`tKnowHowToNameThis.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\abrle\\.nuget\\packages\\epplus\\6.2.2\\epplus.6.2.2.nupkg.sha512",
     "C:\\Users\\abrle\\.nuget\\packages\\epplus.interfaces\\6.1.1\\epplus.interfaces.6.1.1.nupkg.sha512",

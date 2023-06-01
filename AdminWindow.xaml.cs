@@ -92,7 +92,7 @@ namespace Don_tKnowHowToNameThis {
         }
 
         private void ChangeMaterialButton_Click(object sender, RoutedEventArgs e) {
-
+            new ChangeMaterialWindow().ShowDialog();
         }
 
         private void DeleteMaterialButton_Click(object sender, RoutedEventArgs e) {
